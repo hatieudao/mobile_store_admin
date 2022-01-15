@@ -37,12 +37,12 @@ exports.adminUserList = async (req, res) => {
     totalRows: count
   }
 
-  res.render('admin/adminUser/adminUserList', { title: 'user List', layout: 'layout.hbs', adminUsers, pagination, filter });
+  res.render('adminUser/adminUserList', { title: 'user List', layout: 'layout.hbs', adminUsers, pagination, filter });
 }
 
 
 exports.addAdminUserPage = (req, res) => {
-  res.render('admin/adminUser/adminUserAdd', { title: 'Product', layout: 'layout.hbs' });
+  res.render('adminUser/adminUserAdd', { title: 'Product', layout: 'layout.hbs' });
 }
 
 
@@ -52,7 +52,7 @@ exports.addAdminUser = async (req, res) => {
   const adminUser = await userService.findAdminUserByUsername(username);
   if (adminUser) {
     const error = "Tên đăng nhập đã tồn tại";
-    res.render('admin/adminUser/adminUserAdd', { title: 'Product', layout: 'layout.hbs', username, password, fullName, address, phoneNumber, avatar, error });
+    res.render('adminUser/adminUserAdd', { title: 'Product', layout: 'layout.hbs', username, password, fullName, address, phoneNumber, avatar, error });
   }
   else {
     const addNewAdminUser = await userService.addAdminUser(username, password, fullName, address, avatar, phoneNumber);

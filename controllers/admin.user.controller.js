@@ -33,7 +33,7 @@ exports.userList = async (req, res) => {
     totalRows: count
   }
 
-  res.render('admin/user/userList', { title: 'user List', layout: 'admin/layout.hbs', normalUsers, pagination, filter });
+  res.render('user/userList', { title: 'user List', layout: 'layout.hbs', normalUsers, pagination, filter });
 }
 
 

@@ -1,0 +1,73 @@
+body {
+  background-color: #FFFFFF;
+  font-family: 'Space Mono';
+  height: 100vh;
+}
+
+button {
+  text-transform: uppercase;
+  padding: 20px;
+  background-color: #333333;
+  border: 0;
+  color: white;
+}
+
+.logo-title {
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding-left: 50px;
+  padding-top: 30px;
+}
+
+.container {
+  display: flex;
+  margin: 100px;
+}
+
+.Scarecrow-img {
+  width: 70%;
+}
+
+.section-main {
+  width: 60%;
+}
+
+.main-text {
+  width: 56%;
+  margin-bottom: 50px;
+}
+
+.header {
+  font-size: 2.2rem;
+}
+
+@media only screen and (max-width: 375px) {
+  .container {
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .logo-title {
+    padding-left: 10px;
+    padding-top: 20px;
+  }
+
+  .Scarecrow-img {
+    width: 100%
+  }
+
+  .section-main {
+    width: 100%;
+  }
+
+  .main-text {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+}
+a{
+  text-decoration: none;
+  color: #FFFFFF;
+}

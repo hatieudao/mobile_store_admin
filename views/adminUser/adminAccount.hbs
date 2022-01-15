@@ -1,0 +1,109 @@
+<div class="container">
+    <div class="admin-container-content">
+        <header class="admin-container-content-header">
+            <h1 class="row py-4 text-primary admin-container-content-header__title">
+                Thông tin Admin
+            </h1>
+        </header>
+<!--        <form name="deleteProductForm" id="deleteProductForm" action="/admin/product/{{adminUser.id}}/delete">-->
+<!--        </form>-->
+        <div class="">
+<!--            <div class="">-->
+<!--                <div class="row justify-content-end">-->
+<!--                    <div class="col-sm-4 text-center">-->
+<!--                        <button type="submit" class="btn btn-danger shadow-none" form="deleteProductForm">-->
+<!--                            <i class="fa fa-times-circle"></i>-->
+<!--                            Xóa-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="">
+                <div class="row justify-content-center">
+                    <h2 class="row py-4 text-secondary">
+                        Thông tin tài khoản
+                    </h2>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-9">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-3 py-2">
+                                        ID
+                                    </div>
+                                    <div class="col-lg-9 py-2">
+                                        <input class="form-control shadow-none" name="id" type="text" placeholder="ID" value="{{adminUser.id}}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-3 py-2">
+                                        Username
+                                    </div>
+                                    <div class="col-lg-9 py-2">
+                                        <input class="form-control shadow-none" name="username" type="text" placeholder="username" value="{{adminUser.username}}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-3 py-2">
+                                        Ngày tạo
+                                    </div>
+                                    <div class="col-lg-9 py-2">
+                                        <input class="form-control shadow-none" name="created_at" type="text" placeholder="Ngày tạo" value="{{adminUser.created_at}}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 align-items-center justify-content-center">
+                        <div style="border: solid 1px #ccc">
+                            <img class="my-auto" src="{{adminUser.avatar}}" style="width: 100%"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="row justify-content-center">
+                    <h2 class="row py-4 text-secondary">
+                        Thông tin cá nhân
+                    </h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Số điện thoại
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="phone_number" type="number" placeholder="{{adminUser.phone_number}}" value="{{adminUser.phone_number}}" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Địa chỉ
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="address" type="text" placeholder="{{adminUser.address}}" value="{{adminUser.address}}" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

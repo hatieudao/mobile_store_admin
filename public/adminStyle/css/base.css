@@ -1,0 +1,84 @@
+:root{
+    --white-color: #ffffff;
+    --black-color: #000;
+    --admin-sidebar-bg-color: rgb(0, 28, 64);
+    --admin-header-bg-color: rgb(0, 28, 64);
+    --admin-login-background: #132644;
+    --admin-header-height: 50px;
+    --admin-sidebar-widtht: 200px;
+    --body-color: #ccc;
+}
+
+body{
+    background: var(--body-color);
+}
+
+table{
+    /*border: 1px solid red;*/
+
+}
+
+.admin-table{
+    border-color: #d9dbe2;
+}
+
+thead{
+    /*background: #ccc;*/
+    border-bottom-style: hidden;
+    background: #bbc9de;
+}
+
+tbody{
+    /*background: #d9dbe2;*/
+}
+
+td{
+    padding: 0;
+}
+
+td a{
+    text-decoration: none;
+    color: #6191c7;
+}
+
+th, td {
+    text-align: left;
+    vertical-align: middle;
+    /*background: #1bd172;*/
+}
+
+td img{
+    width: 50px;
+}
+
+
+.admin-content{
+    background-color: var(--body-color);
+}
+
+.admin-container{
+    padding-top: 24px;
+    padding-bottom: 24px;
+    background-color:var(--body-color);
+}
+
+.admin-container-content{
+    border: 1px rgba(0, 0, 0, 80%);
+    border-radius: 10px;
+    background-color: var(--white-color);
+    padding: 24px 40px;
+}
+
+.admin-container-content.admin-add-product{
+    width: 600px;
+    max-width: 100%;
+    background-color: var(--white-color);
+    border-radius: 10px;
+    margin: 100px auto;
+    padding: 80px;
+}
+
+.btn-add{
+    background: #1bd172;
+    border: none;
+}

@@ -1,0 +1,114 @@
+<form class="container" id="addProductForm" action="/admin/adminUser/add">
+    <div class="admin-container-content">
+        <header class="admin-container-content-header">
+            <h1 class="row py-4 text-primary admin-container-content-header__title">
+                Thêm tải khoản quản trị
+            </h1>
+        </header>
+        <div class="">
+            <div class="">
+                <div class="row justify-content-end">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-primary shadow-none" data-toggle="modal">
+                            <i class="fa fa-pencil"></i>
+                            Thêm mới
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="row justify-content-center">
+                    <h2 class="row py-4 text-secondary">
+                        Thông tin tài khoản
+                    </h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Username
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="username" type="text" placeholder="Username" value="{{username}}" required>
+                            </div>
+                        </div>
+                        {{#if error}}
+                        <div class="row align-items-center justify-content-end">
+                            <div class="col-lg-9 py-2">
+                                {{error}}
+                            </div>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Password
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="password" type="password" placeholder="Password" value="{{password}}" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="row justify-content-center">
+                    <h2 class="row py-4 text-secondary">
+                        Thông tin cá nhân
+                    </h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Họ tên
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="fullName" type="text" placeholder="Họ tên" value="{{fullName}}" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Địa chỉ
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="address" type="text" placeholder="Địa chỉ" value="{{address}}" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Số điện thoại
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="phoneNumber" type="number" placeholder="Số điện thoại" value="{{phoneNumber}}" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Link avatar
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="avatar" type="text" placeholder="link" value="{{avatar}}" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

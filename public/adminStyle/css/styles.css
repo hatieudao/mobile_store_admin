@@ -1,0 +1,302 @@
+/* ------------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------Login Form-------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------- */
+
+
+.admin-login{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: var(--admin-login-background);
+}
+
+.admin-login-content{
+    padding-top: 120px;
+}
+
+.admin-login-container{
+    max-width: 500px;
+    width: 80%;
+    background-color: var(--white-color);
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+/* ------------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------admin wrapper-------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------- */
+.admin-wrapper{
+    display: flex;
+    width: 100%;
+}
+
+.admin-wrapper.admin--hide{
+    display: none;
+}
+
+.admin-login.admin--hide{
+    display: none;
+}
+
+/* --------------------------------------------------------------------------- */
+
+.admin-sidebar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    min-width: var(--admin-sidebar-widtht);
+    max-width: var(--admin-sidebar-widtht);
+    height: 100vh;
+    background-color: var(--admin-sidebar-bg-color);
+    transition: all 0.3s;
+    transform-origin: 0 left;
+}
+
+.admin-wrapper.admin-sidebar--hide .admin-sidebar{
+    margin-left: calc(0px - var(--admin-sidebar-widtht));
+}
+
+.admin-wrapper.admin-sidebar--hide .admin-content{
+    margin-left: 0;
+}
+
+.admin-wrapper.admin-sidebar--hide .admin-content .admin-header{
+    width: 100%;
+}
+
+
+
+/* -------------------------------------------------------------------- */
+/* ---------------------------- Sidebar ------------------------------- */
+/* -------------------------------------------------------------------- */
+
+.admin-sidebar-header{
+    height: 220px;
+    color: #fff;
+    text-align: center;
+}
+
+.admin-sidebar-header__title{
+    width: 100%;
+    height: var(--admin-header-height);
+    line-height: var(--admin-header-height);
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+}
+
+.admin-sidebar-header-infor{
+    display: block;
+    width: 100%;
+    height: 140px;
+    background-color: #2d3238;
+
+}
+
+.admin-sidebar-header-avatar{
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    background-color: var(--white-color);
+}
+
+.admin-sidebar-header-avatar__img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.admin-sidebar-header-infor__name{
+    font-weight: 400;
+}
+
+.admin-sidebar-list{
+    
+}
+
+.admin-sidebar-item{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+
+.admin-sidebar-item__link{
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 24px;
+    text-decoration: none;
+    color: var(--white-color);
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.admin-sidebar-item:hover
+.admin-sidebar-item__link{
+    background-color: #2d3238;
+    color: var(--white-color);
+}   
+
+
+/* -------------------------------------------------------------------- */
+/* ---------------------------- Content ------------------------------- */
+/* -------------------------------------------------------------------- */
+
+
+.admin-content{
+    width: 100%;
+    padding: 0;
+    margin-left: var(--admin-sidebar-widtht);
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/*-------------------- Header ---------------------------------- */
+.admin-header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: calc(100% - var(--admin-sidebar-widtht));
+    height: var(--admin-header-height);
+    background-color: var(--admin-header-bg-color);
+    transition: all 0.3s;
+}
+
+.admin-header-nav{
+    
+}
+
+.admin-header-nav-btn{
+
+}
+
+.admin-header-nav-btn__icon{
+    font-size: 1.6rem;
+}
+
+
+.admin-container{
+    margin-top: var(--admin-header-height);
+}
+
+
+.admin-header-nav-list{
+    margin-left: auto;
+}
+
+.admin-header-nav-item{
+    
+}
+
+.admin-header-nav__link{
+    text-decoration: none;
+}
+
+.admin-header-account{
+
+}
+
+.admin-header-avatar{
+    width: calc(var(--admin-header-height)/2);
+    height: calc(var(--admin-header-height)/2);
+    margin-right: 8px;
+    background-color: var(--white-color);
+}
+
+.admin-header-avatar__img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.admin-header-account__name{
+    color: var(--white-color);
+}
+
+
+
+/* --------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
+/* ---------------------------------------admin dashboards----------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
+
+.admin-dashboard{
+    padding: 40px 0;
+}
+
+.admin-dashboard-list{
+    list-style: none;
+    padding: 0;
+}
+
+.admin-dashboard-item{
+    padding-top: 24px;
+    padding-bottom: 24px;
+    border-radius: 5px;
+    background-color: rgba(14, 160, 255);
+    color: var(--white-color);
+}
+
+.admin-dashboard-item__title{
+    padding: 0;
+    padding-bottom: 16px;
+    text-align: center;
+}
+
+.admin-dashboard-item-count{
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    font-size: 2.4rem;
+}
+
+.admin-dashboard-item-infor-list{
+    list-style: none;
+}
+
+.admin-dashboard-item-infor-item{
+    line-height: 2rem;
+    font-size: 1.2rem;
+}
+
+.admin-dashboard-item-infor-item__label{
+    
+}
+
+.admin-dashboard-item-infor-item__description{
+    text-align: right;
+}
+
+.admin-dashboard-item-btn{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 16px;
+}
+
+.admin-dashboard-item-btn__link{
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    color: var(--black-color);
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+
+
+
+/* Product */
+.admin-product-add-item-input-description{
+    height: 400px;
+}

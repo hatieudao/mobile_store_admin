@@ -1,0 +1,164 @@
+<div class="container">
+    <div class="admin-container-content">
+        <header class="admin-container-content-header">
+            <h1 class="row py-4 text-primary admin-container-content-header__title">
+                Chi tiết đơn hàng
+            </h1>
+        </header>
+
+        <div class="admin-order-item-infor">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-4">ID đơn hàng</div>
+                        <div class="col-8">{{order.id}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Mã khách hàng</div>
+                        <div class="col-8">{{order.user_id}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Tên khách hàng</div>
+                        <div class="col-8">{{order.[user.full_name]}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Số điện thoại</div>
+                        <div class="col-8">{{order.[user.phone_number]}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Số lượng sản phẩm</div>
+                        <div class="col-8">{{countOrderDetails}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Tổng tiền</div>
+                        <div class="col-8">10.000.000 đ</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Thời gian</div>
+                        <div class="col-8">{{order.created_at}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Địa chỉ</div>
+                        <div class="col-8">{{order.[user.address]}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Trình trạng</div>
+                        <div class="col-8">{{order.state}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">Giao hàng</div>
+                        <div class="col-8"></div>
+                    </div>
+                    <form class="row py-4" action="/admin/order/{{order.id}}/changeState">
+                        <div class="col-4">
+                            <div class="d-flex align-items-center">
+                                <input type="hidden" id="orderState" value="{{order.state}}">
+                                <select name="state" id="orderStateSelection" class="form-select">
+                                    <option value="waiting to confirm">Chờ xác nhận</option>
+                                    <option value="delivering">Đang vận chuyển</option>
+                                    <option value="took delivery">Đã nhận hàng</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-success">
+                                Xác nhận tình trạng đơn hàng
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-3">
+                    <div class="admin-user-infor">
+                        <div class="row">
+                            <div class="col">
+                                <img src="/assets/img/user/KH0001.png" alt="" class="w-100 admin-user-infor-img">
+                                <div class="py-4">
+                                    <div class="row py-2">
+                                        <div class="col">
+                                            <h3>{{order.[user.username]}}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="fas fa-phone"></i>
+                                            {{order.[user.phone_number]}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-user-old-order">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                Số đơn hãng đã mua
+                            </div>
+                            <div class="col-sm-4">
+                                {{countOrderByUserId}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                Tổng số tiền
+                            </div>
+                            <div class="col-sm-4">
+                                200000000
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-4">
+                <div class="col">
+                    <table class="table admin-order-table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                Mã order detail
+                            </th>
+                            <th>
+                                Mã sản phẩm
+                            </th>
+                            <th>
+                                Tên sản phẩm
+                            </th>
+                            <th>
+                                Giá sản phẩm
+                            </th>
+                            <th>
+                                Tên Option
+                            </th>
+                            <th>
+                                Giá Option
+                            </th>
+                            <th>
+                                Capacity
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each orderDetails}}
+                            <tr>
+                                <td>{{id}}</td>
+                                <td>{{[option.mobile_id]}}</td>
+                                <td>{{[option.mobile.full_name]}}</td>
+                                <td>{{[option.mobile.price]}}</td>
+                                <td>{{[option.name]}}</td>
+                                <td>{{[option.price]}}</td>
+                                <td>{{[option.capacity.name]}}</td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#section 'script'}}
+    <script>
+        const orderStateValue = $('#orderState').val();
+        $('#orderStateSelection').val(orderStateValue);
+    </script>
+{{/section}}

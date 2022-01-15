@@ -1,0 +1,430 @@
+<div class="container-lg">
+    <div class="admin-container-content">
+        <header class="admin-container-content-header">
+            <h1 class="row py-4 text-primary admin-container-content-header__title">
+               Sản phẩm
+            </h1>
+        </header>
+        <form name="deleteProductForm" id="deleteProductForm" action="/admin/product/{{product.id}}/delete"></form>
+        <form name="restoreProductForm" id="restoreProductForm" action="/admin/product/{{product.id}}/restore"></form>
+        <form class="" action="/admin/product/{{product.id}}/update"  enctype="multipart/form-data" method="post">
+            <div class="">
+                <div class="row justify-content-end">
+                    <div class="col-sm-4 text-center">
+                        {{#if isRemove}}
+                            <button type="submit" class="btn btn-danger shadow-none" form="restoreProductForm">
+                                <i class="fas fa-undo-alt"></i>
+                                Khôi phục
+                            </button>
+                        {{else}}
+                            <button id="updateBtn" type="submit" class="btn btn-success shadow-none" data-toggle="modal">
+                                <i class="fa fa-pencil"></i>
+                                Lưu chỉnh sửa
+                            </button>
+                            <button type="submit" class="btn btn-danger shadow-none" form="deleteProductForm">
+                                <i class="fa fa-times-circle"></i>
+                                Xóa
+                            </button>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="">
+                <div class="row justify-content-center">
+                    <h2 class="row py-4 text-secondary">
+                        Sản phẩm {{product.id}}
+                    </h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Tên sản phẩm
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="fullName" type="text" placeholder="Tên sản phẩm" value="{{product.full_name}}"
+                                    {{#if isRemove}}readonly{{/if}}
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Giá
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="price" type="number" step="0.01" min="0" placeholder="Giá" value="{{product.price}}"
+                                       {{#if isRemove}}readonly{{/if}}
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Rating
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="rating" type="number" step="0.01" min="0" placeholder="Rating" value="{{product.rating}}"
+                                       {{#if isRemove}}readonly{{/if}}
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Ngày tạo
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="rating" step="0.01" min="0" placeholder="Ngày tạo" value="{{product.created_at}}" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Ngày cập nhập
+                            </div>
+                            <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="rating" step="0.01" min="0" placeholder="Ngày cập nhập" value="{{product.updated_at}}" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!--            Brand-->
+            <div class="">
+                <div class="row justify-content-center">
+                    <h2 class="row py-4 text-secondary">
+                        Thương hiệu
+                    </h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 py-2">
+                                Tên thương hiệu
+                            </div>
+                            <div class="col-lg-9 py-2 d-flex justify-content-between dropdown-menu-group">
+                                <input name="brandName" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Tên thương hiệu" value="{{product.[brand.name]}}"
+                                       {{#if isRemove}}readonly{{/if}}
+                                >
+
+                                {{#unless isRemove}}
+                                    <div class="">
+                                        <button class="btn dropdown-toggle shadow-none" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            {{#each brandNames}}
+                                                <li class="dropdown-item">{{name}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                {{/unless}}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+<!--                Configurations-->
+            <div class="">
+                <div class="row justify-content-center">
+                    <h2 class="row py-4 text-secondary">
+                        Configuration
+                    </h2>
+                </div>
+                <div class="row justify-content-center align-items-center py-4">
+                    <div class="col">
+                        <table class="table table-hover table-bordered admin-table">
+                            <thead class="admin-table-thead">
+                            <tr>
+                                <th class="col-lg-1 col-md-2 col-sm-2">
+                                    <div class="row justify-content-start">
+                                        <div class="col-lg-6 col-md-4 col-sm-2">
+                                            <input class="form-check-input" type="checkbox" id="selectAllConfiguration" name="selectAllConfiguration">
+                                        </div>
+                                        <div class="col-lg-6 col-md-8 col-sm-10">
+                                            Xóa
+                                        </div>
+                                    </div>
+                                </th>
+                                <th class="col-lg-1 col-md-1 col-sm-1">
+                                    ID
+                                </th>
+                                <th class="col-lg-6 col-md-5 col-sm-5">
+                                    Giá trị
+                                </th>
+                                <th class="col-lg-4 col-md-4 col-sm-4">
+                                    Specification
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="admin-table-tbody" id="configurationTable">
+                            {{#each configurations}}
+                                <tr>
+                                    <td>
+                                        <input class="form-check-input select-configuration-row-checkbox" type="checkbox" id="" name="deleteConfigurations[]" value="{{id}}">
+                                    </td>
+                                    <td>{{id}}</td>
+                                    <td>{{value}}</td>
+                                    <td>{{specification.name}}</td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {{#unless isRemove}}
+                <div class="row justify-content-end">
+                    <div class="col-lg-3 text-center">
+                        <button id="addConfigurationRow" type="button" class="btn btn-sm btn-add shadow-none" data-toggle="modal">
+                            <i class="fas fa-plus"></i>
+                            Thêm mới
+                        </button>
+                    </div>
+                </div>
+                {{/unless}}
+            </div>
+
+<!--                Options-->
+            <div class="">
+                <div class="row justify-content-center">
+                    <h2 class="row py-4 text-secondary">
+                        Option
+                    </h2>
+                </div>
+                <div class="row justify-content-center align-items-center py-4">
+                    <table class="table table-bordered admin-table">
+                            <thead class="admin-table-thead">
+                                    <tr>
+                                        <th class="col-lg-1 col-md-1 col-sm-1">
+                                            <input class="form-check-input" type="checkbox" id="selectAllOption" name="selectAllOption">
+                                            Xóa
+                                        </th>
+                                        <th class="col-lg-1 col-md-1 col-sm-1">
+                                            ID
+                                        </th>
+                                        <th class="col-lg-4">
+                                            Tên
+                                        </th>
+                                        <th class="col-lg-3">
+                                            Giá
+                                        </th>
+                                        <th class="col-lg-3">
+                                            Capacity
+                                        </th>
+                                    </tr>
+                                    </thead>
+                            <tbody class="admin-table-tbody" id="optionTable">
+                                    {{#each options}}
+                                        <tr>
+                                            <td>
+                                                <input class="form-check-input select-option-row-checkbox" type="checkbox" id="" name="deleteOptions[]" value="{{id}}">
+                                            </td>
+                                            <td>{{id}}</td>
+                                            <td>{{name}}</td>
+                                            <td>{{price}}</td>
+                                            <td>{{capacity.name}}</td>
+                                        </tr>
+                                    {{/each}}
+                            </tbody>
+                    </table>
+                </div>
+
+                {{#unless isRemove}}
+                <div class="row justify-content-end">
+                    <div class="col-lg-3 text-center">
+                        <button id="addOptionRow" type="button" class="btn btn-sm btn-add shadow-none" data-toggle="modal">
+                            <i class="fas fa-plus"></i>
+                            Thêm mới
+                        </button>
+                    </div>
+                </div>
+                {{/unless}}
+            </div>
+
+            <!--                Pictures-->
+            <div class="" id="pictureList">
+                <div class="row justify-content-center">
+                    <h2 class="row py-4 text-secondary">
+                        Pictures
+                    </h2>
+                </div>
+                {{#unless isRemove}}
+                <div class="row justify-content-start mt-4 add-new-pictures">
+                    <input name="pictures" accept="image/*" type='file' id="imageInput" multiple/>
+                </div>
+                <div class="mt-4 p-1" style="border-radius: 10px; border: 1px solid #ccc; ">
+                    <div class="row justify-content-start mt-4 none" id="showAddedImage"></div>
+                </div>
+                {{/unless}}
+                <p>Số lượng ảnh xóa: <span id="countDeletePictures"></span></p>
+                <div class="mt-4 p-1" style="border-radius: 10px; border: 1px solid #ccc; ">
+                    <div class="row justify-content-start mt-4">
+                        {{#each pictures}}
+                            <div class="col-lg-1 col-md-3 col-sm-6 mb-4 product-picture">
+                                <input type="hidden" id="deletePictureInput" value="{{id}}">
+                                <input type="hidden" id="deletePictureLinkInput" value="{{link}}">
+                                <img src="{{link}}" class="product-picture-img" style="width: 80%"/>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{#section 'script'}}
+
+    <script>
+
+        let countConfiguration = 0;
+        let countOption = 0;
+
+        $('#addConfigurationRow').click(function (){
+            console.log("addConfigurationRow");
+
+            const configurationRow =
+                    `<tr>
+                        <td colspan="2" class="text-center">
+                            <button type="button" class="btn btn-sm btn-delete-row shadow-none deleteRowBtn" data-toggle="modal">
+                                <i class="fas fa-trash-alt text-danger" style="font-size: 1.4rem"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <input class="form-control shadow-none" name="configurations[${countConfiguration}][configurationValue]" type="text" placeholder="Giá trị" required>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-between dropdown-menu-group">
+                                <input name="configurations[${countConfiguration}][specificationName]" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Giá trí" required>
+                            </div>
+                        </td>
+                    </tr>`
+
+            $('#configurationTable').append(configurationRow);
+            countConfiguration++;
+        })
+
+        $('#addOptionRow').click(function (){
+            console.log("addOptionRow");
+            const optionRow =
+                    `<tr>
+                        <td colspan="2" class="text-center">
+                            <button type="button" class="btn btn-sm btn-delete-row shadow-none deleteRowBtn" data-toggle="modal">
+                                <i class="fas fa-trash-alt text-danger" style="font-size: 1.4rem"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <input class="form-control shadow-none" name="options[${countOption}][optionName]" type="text" placeholder="Giá trị" required>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-between dropdown-menu-group">
+                                <input name="options[${countOption}][optionPrice]" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Giá trí" required>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-between dropdown-menu-group">
+                                <input name="options[${countOption}][capacityName]" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Giá trí">
+                            </div>
+                        </td>
+                    </tr>`
+
+            $('#optionTable').append(optionRow);
+            countOption++;
+        })
+
+
+        $('#imageInput').change(function(e) {
+            // console.log("URL.createObjectURL: ", URL.createObjectURL(e.target.files[0]))
+
+            let showAddedImageHtml = "";
+            for (let file of e.target.files)
+            {
+                const src = URL.createObjectURL(file);
+
+                showAddedImageHtml +=
+                        `<div class="col-lg-1 col-md-3 col-sm-6 mb-4 addedImage">
+                            <img src="${src}" alt="new product image" style="width: 80%"/>
+                        </div>`
+
+            }
+            $("#showAddedImage").append(showAddedImageHtml);
+
+        });
+
+
+
+        $("#selectAllConfiguration").click(function(){
+            $('.select-configuration-row-checkbox').not(this).prop('checked', this.checked);
+        });
+
+        $("#selectAllOption").click(function(){
+            $('.select-option-row-checkbox').not(this).prop('checked', this.checked);
+        });
+
+
+
+        let countDeletePictures = 0;
+
+        $("#pictureList").on('click', '.product-picture-img', function(e){
+            console.log("picture click");
+            const img =  $(e.target).closest("img");
+            const deletePictureInput = img.closest(".product-picture").find("#deletePictureInput");
+            const deletePictureLinkInput = img.closest(".product-picture").find("#deletePictureLinkInput");
+            const id = img.closest(".product-picture").find("input").val();
+            console.log("id: ",id);
+
+            console.log(img);
+            if( parseFloat(img.css("opacity")) < 1){
+                img.css('opacity', '1');
+
+                countDeletePictures--;
+                $("#countDeletePictures").html(countDeletePictures);
+
+                deletePictureInput.removeAttr('name');
+                deletePictureLinkInput.removeAttr('name');
+
+            }
+            else
+            {
+                img.css('opacity', '0.6');
+
+                countDeletePictures++;
+                $("#countDeletePictures").html(countDeletePictures);
+
+                deletePictureInput.attr('name', 'deletePictures[]');
+                deletePictureLinkInput.attr('name', 'deletePictureLinks[]');
+            }
+        })
+
+
+        // $("#updateBtn").click(function (){
+        //     console.log("update click");
+        //     $("#deletePictures").val().push(1);
+        //     $("#deletePictures").val().push(2);
+        //
+        // });
+
+    </script>
+    <script src="/adminStyle/js/filterSelect.js"></script>
+    <script src="/adminStyle/js/table.js"></script>
+
+
+{{/section}}
+
+

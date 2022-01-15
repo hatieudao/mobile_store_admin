@@ -1,0 +1,204 @@
+<div class="container">
+    <div class="admin-container-content">
+        <header>
+            <h1 class="row py-2 text-primary">
+                Danh sách user
+            </h1>
+        </header>
+
+        <div class="row py-4">
+            <form class="" name="filterForm">
+                <div class="row align-items-start justify-content-between">
+                    <div class="col-lg-10">
+                        <div class="row pb-2">
+                            <div class="pb-2 col-lg-3 col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <input name="userId" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="ID User"
+                                        {{#if filter.userId}}
+                                           value="{{filter.userId}}"
+                                        {{/if}}
+                                    >
+                                </div>
+                            </div>
+                            <div class="pb-2 col-lg-3 col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <input name="userFullName" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Tên User"
+                                        {{#if filter.userFullName}}
+                                           value="{{filter.userFullName}}"
+                                        {{/if}}
+                                    >
+                                </div>
+                            </div>
+                            <div class="pb-2 col-lg-3 col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <input name="userPhoneNumber" type="number" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Số điện thoại"
+                                        {{#if filter.userPhoneNumber}}
+                                           value="{{filter.userPhoneNumber}}"
+                                        {{/if}}
+                                    >
+                                </div>
+                            </div>
+                            <div class="pb-2 col-lg-3 col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <input name="userUserName" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Username"
+                                        {{#if filter.userUserName}}
+                                           value="{{filter.userUserName}}"
+                                        {{/if}}
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pb-2">
+                            <div class="pb-2 col-lg-3 col-md-6">
+                                <div class="form-group">
+                                    <label>Tạo từ ngày</label>
+                                    <input name="minCreatedDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button"
+                                        {{#if filter.minCreatedDate}}
+                                           value="{{filter.minCreatedDate}}"
+                                        {{/if}}
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <label>Đến ngày</label>
+                                    <input name="maxCreatedDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button"
+                                        {{#if filter.maxCreatedDate}}
+                                           value="{{filter.maxCreatedDate}}"
+                                        {{/if}}
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-1 d-flex justify-content-end">
+                        <button id="resetBtn" type="button" class="btn btn-warning left">
+                            Reset
+                        </button>
+                        <button id="searchBtn" type="submit" class="btn btn-primary left">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row pb-2 d-flex align-items-center justify-content-between">
+                    <div class="col-lg-4 pb-2">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        Số dòng
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="d-flex justify-content-between">
+                                            <input name="limit" id="limit" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Số dòng"
+                                                {{#if pagination.limit}}
+                                                   value="{{pagination.limit}}"
+                                                {{/if}}
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 ">
+                                <div class="row align-items-center">
+                                    <div class="select-menu-group">
+                                        <input type="hidden" id="filterStatus"
+                                            {{#if filter.status}}
+                                               value="{{filter.status}}"
+                                            {{/if}}
+                                        >
+                                        <select name="status" id="status" class="form-select">
+                                            <option value="0">Tất cả</option>
+                                            <option value="unlock">Mở khóa</option>
+                                            <option value="lock">Khóa</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 pb-2 text-center">
+                        <button type="submit" class="btn btn-danger shadow-none" form="lockAllForm">
+                            <i class="fa fa-times-circle"></i>
+                            Khóa tài khoản
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+
+
+        <form class="row py-4" name="lockAllForm" id="lockAllForm" action="/admin/user/lockAll">
+            <table class="table table-bordered admin-table">
+                <thead class="admin-table-thead">
+                <tr>
+                    <th>
+                        <input class="form-check-input" type="checkbox" id="selectAll" name="selectAll">
+                    </th>
+                    <th>
+                        ID
+                    </th>
+
+                    <th>
+                        Username
+                    </th>
+                    <th>
+                        Tên
+                    </th>
+                    <th>
+                        Số điện thoại
+                    </th>
+                    <th>
+                        Ngày tạo
+                    </th>
+                    <th>
+                        Xem chi tiết
+                    </th>
+                    <th>
+                        Ảnh
+                    </th>
+                    <th>
+                        Trạng thái
+                    </th>
+                </tr>
+                </thead>
+                <tbody class="admin-table-tbody">
+                {{#each normalUsers}}
+                    <tr>
+                        <td>
+                            <input class="form-check-input select-row-checkbox" type="checkbox" id="" name="lockAll[]" value="{{id}}">
+                        </td>
+                        <td>{{id}}</td>
+                        <td>{{username}}</td>
+                        <td>{{full_name}}</td>
+                        <td>{{phone_number}}</td>
+                        <td>{{created_at}}</td>
+                        <td class="text-center">
+                            <a href="/admin/user/{{id}}">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <img src="{{avatar}}" alt="" class="">
+                        </td>
+                        <td>
+                            {{status}}
+                        </td>
+                {{/each}}
+                </tr>
+                </tbody>
+            </table>
+        </form>
+        <footer class="row justify-content-center">
+            <nav class="col-lg-3 col-md-6 col-sm-9" aria-label="Page navigation example" id="pagination">
+                {{{createPagination pagination paginationClass="pagination"}}}
+            </nav>
+        </footer>
+    </div>
+</div>
+
+{{#section 'script'}}
+    <script src="/adminStyle/js/filterSelect.js"></script>
+    <script src="/adminStyle/js/pagination.js"></script>
+{{/section}}

@@ -1,94 +1,92 @@
 
-Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
-
-    switch (operator) {
-        case '==':
-            return (v1 == v2) ? options.fn(this) : options.inverse(this);
-        case '===':
-            return (v1 === v2) ? options.fn(this) : options.inverse(this);
-        case '!=':
-            return (v1 != v2) ? options.fn(this) : options.inverse(this);
-        case '!==':
-            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
-        case '<':
-            return (v1 < v2) ? options.fn(this) : options.inverse(this);
-        case '<=':
-            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
-        case '>':
-            return (v1 > v2) ? options.fn(this) : options.inverse(this);
-        case '>=':
-            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
-        case '&&':
-            return (v1 && v2) ? options.fn(this) : options.inverse(this);
-        case '||':
-            return (v1 || v2) ? options.fn(this) : options.inverse(this);
-        default:
-            return options.inverse(this);
-    }
-});
 
 
 
-const apiPath = $("#apiPath");
 const pathname = location.pathname;
 let urlParams = new URLSearchParams(location.search);
 // console.log("urlParams:", urlParams.toString());
 
-const source = $("#productListTemplate").html();
-const template = Handlebars.compile(source);
 
-$(document).ready(function() {
+const tableDataSource = $("#tableDataTemplate").html();
+const tableDataTemplate = Handlebars.compile(tableDataSource);
+
+const paginationSource = $("#paginationTemplate").html();
+const paginationTemplate = Handlebars.compile(paginationSource);
 
 
-
-    $('#pagination li').addClass('page-item');
-    $('#pagination li a').addClass('page-link');
+function loadPageLink(){
+    //Lấy ra current page
     const currentPage = urlParams.get("page") || 1;
-    // console.log("currentPage: ",currentPage);
-
     $('#pagination li a').each((index, item) => {
+
+        //itemPage là giá trị của page mà page-link nắm giữ
         let itemPage = $(item).attr('href').split('=')[1];
-        // console.log("$(item).attr('href'): ",$(item).attr('href'));
-        // console.log("$(item).html: ",$(item).html());
-        // console.log("itemPage: ",itemPage);
+
+        //urlParams là url của page hiện tại (bao gồm các giá trị đã filter)
         urlParams.set("page",itemPage);
+
+        //sửa lại href cho page-link = pathname + '?' + urlParams.toString();
+        //Lúc này trong href của page-link sẽ ko bị mất các filter ta đã chọn
         const itemHref = pathname + '?' + urlParams.toString();
         $(item).attr('href',itemHref);
     })
+
+    //Sửa lại page cho urlParams về lại giá trị currentPage
     urlParams.set("page",currentPage);
+
+}
+
+
+$(document).ready(function() {
+    $('#pagination li').addClass('page-item');
+    $('#pagination li a').addClass('page-link');
+    loadPageLink();
 });
 
-$('#pagination li a').click(function (e){
 
+$("#pagination").on('click', '.page-link', function(e) {
+
+    //Ngăn chặn load lại trang khi click vào page-link
     e.preventDefault();
 
-    const item = $(e.target).closest("li").find("a");
-    console.log("item: ",item);
+    //item là page-link element
+    const item = $(e.target).closest("li").find("a");;
+
     const pageHref = item.attr('href');
-    console.log("pageHref: ",pageHref);
+
+    //filter là params cùa filter mà ta chọn
+    //ta cách ra sau "?" của page-link href
     const filter = pageHref.split("?")[1]
-    const urlApi = "/admin/api" + apiPath.val() + "?"+ filter;
+
+    //Url của API
+    const urlApi = "/admin/api" + "/product" + "?"+ filter;
     console.log(urlApi);
+
+
+    const clickPageNum = pageHref.split("page=")[1];
+    console.log("clickPageNum: ",clickPageNum);
 
     $.ajax({
         // url: "/admin/api/product?page=1",
         url: urlApi,
         success: function (data){
-            let jsonData = {
-                data: data
-            }
+            const products = data.products;
+            const pagination = data.pagination;
 
-            const products = jsonData.data;
-            console.log("jsonData: ",jsonData);
-            const productList = $("#productList");
+            const tableData = $("#tableData");
 
             let itemPage = $(item).attr('href').split('=')[1];
             urlParams.set("page",itemPage);
 
-            productList.html(template({products}));
-            // console.log("productList: ",productList.html());
+            tableData.html(tableDataTemplate({products}));
+            // console.log("tableData: ",tableData.html());
 
+            pagination.page = clickPageNum;
+            $("#pagination") .html(paginationTemplate({pagination, paginationClass: "pagination"}));
+            console.log("pagi: ",$("pagination") .html());
 
+            //Sau khi hiển thị dữ liệu mới, ta load lai page-link
+            loadPageLink();
         }
     })
 })

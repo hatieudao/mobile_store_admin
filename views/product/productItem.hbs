@@ -5,23 +5,21 @@
                Sản phẩm
             </h1>
         </header>
-        <form name="deleteProductForm" id="deleteProductForm" action="/admin/product/{{product.id}}/delete"></form>
-        <form name="restoreProductForm" id="restoreProductForm" action="/admin/product/{{product.id}}/restore"></form>
-        <form class="" action="/admin/product/{{product.id}}/update"  enctype="multipart/form-data" method="post">
+        <form id="updateForm" action="/admin/product/{{product.id}}/update"  enctype="multipart/form-data" method="post">
             <div class="">
                 <div class="row justify-content-end">
                     <div class="col-sm-4 text-center">
                         {{#if isRemove}}
-                            <button type="submit" class="btn btn-danger shadow-none" form="restoreProductForm">
+                            <button type="button" class="btn btn-danger shadow-none" data-toggle="modal" data-target="#toggleDeleteModal">
                                 <i class="fas fa-undo-alt"></i>
                                 Khôi phục
                             </button>
                         {{else}}
-                            <button id="updateBtn" type="submit" class="btn btn-success shadow-none" data-toggle="modal">
+                            <button id="updateBtn" type="button" class="btn btn-success shadow-none" data-toggle="modal" data-target="#updateModal">
                                 <i class="fa fa-pencil"></i>
                                 Lưu chỉnh sửa
                             </button>
-                            <button type="submit" class="btn btn-danger shadow-none" form="deleteProductForm">
+                            <button type="button" class="btn btn-danger shadow-none" data-toggle="modal" data-target="#toggleDeleteModal">
                                 <i class="fa fa-times-circle"></i>
                                 Xóa
                             </button>
@@ -43,10 +41,13 @@
                                 Tên sản phẩm
                             </div>
                             <div class="col-lg-9 py-2">
-                                <input class="form-control shadow-none" name="fullName" type="text" placeholder="Tên sản phẩm" value="{{product.full_name}}"
+                                <input id="productNameInput" class="form-control shadow-none" name="fullName" type="text" placeholder="Tên sản phẩm" value="{{product.full_name}}"
                                     {{#if isRemove}}readonly{{/if}}
                                 >
                             </div>
+                        </div>
+                        <div class="row align-items-center justify-content-end">
+                            <p id="existProductName" class="col-lg-9 text-danger"></p>
                         </div>
                     </div>
                 </div>
@@ -118,10 +119,9 @@
                                 Tên thương hiệu
                             </div>
                             <div class="col-lg-9 py-2 d-flex justify-content-between dropdown-menu-group">
-                                <input name="brandName" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Tên thương hiệu" value="{{product.[brand.name]}}"
+                                <input id="brandNameInput" name="brandName" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Tên thương hiệu" value="{{product.[brand.name]}}"
                                        {{#if isRemove}}readonly{{/if}}
                                 >
-
                                 {{#unless isRemove}}
                                     <div class="">
                                         <button class="btn dropdown-toggle shadow-none" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
@@ -134,6 +134,9 @@
                                 {{/unless}}
                             </div>
 
+                        </div>
+                        <div class="row align-items-center justify-content-end">
+                            <p id="existBrandName" class="col-lg-9 text-danger"></p>
                         </div>
                     </div>
                 </div>
@@ -289,6 +292,48 @@
     </div>
 </div>
 
+<div id="updateModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn chắc chắn với lựa chọn?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="" type="submit" class="btn btn-primary" form="updateForm">Save</button>
+                <button id="" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toggleDeleteModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn chắc chắn với lựa chọn?</p>
+            </div>
+            <div class="modal-footer">
+                <form action="/admin/product/{{product.id}}/toggleDelete">
+                    <button id="" type="submit" class="btn btn-primary">Save</button>
+                </form>
+                <button id="" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 {{#section 'script'}}
 
     <script>
@@ -423,7 +468,85 @@
     </script>
     <script src="/adminStyle/js/filterSelect.js"></script>
     <script src="/adminStyle/js/table.js"></script>
+    <script>
 
+        let brandNames = new Array()
+        let productNames = new Array();
+        let isExistProductName = false;
+        let curProductName = $("#brandNameInput").val();
+
+        $(document).ready(function() {
+
+            $.ajax({
+                url: "/admin/api/product/brand",
+                success(data){
+                    console.log("ajax brand names");
+                    brandNames = data.brandNames;
+                }
+            });
+
+            $.ajax({
+                url: "/admin/api/product/productName",
+                success(data){
+                    console.log("ajax product names");
+                    productNames = data.productNames;
+
+                    const index = productNames.indexOf(curProductName);
+                    if (index > -1) {
+                        productNames.splice(index, 1);
+                    }
+                }
+            });
+        });
+
+
+        const brandNameInput = $("#brandNameInput");
+        const existBrandName = $("#existBrandName");
+        brandNameInput.change(function (e){
+            const curBrandName = brandNameInput.val().trim();
+            const isExistBrandName = brandNames.includes(curBrandName);
+
+            console.log("curBrandName: ",curBrandName);
+            console.log("brandNames: ",brandNames);
+            if(isExistBrandName){
+                console.log("Thương hiệu đã tồn tại");
+                existBrandName.html("")
+            }
+            else
+            {
+                console.log("Thương hiệu chưa tồn tại");
+                existBrandName.html("Tên thương hiệu chưa tồn tại<br>Hệ thống sẽ thêm thương hiệu mới");
+            }
+
+        })
+
+        const productNameInput = $("#productNameInput");
+        const existProductName = $("#existProductName");
+        productNameInput.change(function (e){
+            const curProductName = productNameInput.val().trim();
+            isExistProductName = productNames.includes(curProductName);
+
+            console.log("curProductName: ",curProductName);
+            console.log("productNames: ",productNames);
+            if(isExistProductName){
+                console.log("Tên sản phẩm đã tồn tại");
+                existProductName.html("Tên sản phẩm đã tồn tại<br>Vui lòng thử lại");
+            }
+            else
+            {
+                console.log("Tên sản phẩm  chưa tồn tại");
+                existProductName.html("")
+            }
+
+        })
+
+        $("#addBtn").click(function (e){
+            if(!isExistProductName){
+                $("#addModal").modal('show');
+            }
+        })
+
+    </script>
 
 {{/section}}
 

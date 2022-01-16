@@ -10,7 +10,7 @@
     </div>
 
 
-    <ul class="list-unstyled components pt-4 pb-0 admin-sidebar-list">
+    <ul class="list-unstyled components pt-0 pb-0 admin-sidebar-list">
         <li class="admin-sidebar-item admin-sidebar-item--active">
             <a href="/admin" class="admin-sidebar-item__link">Home</a>
         </li>
@@ -26,8 +26,17 @@
         <li class="admin-sidebar-item">
             <a href="/admin/adminUser" class="admin-sidebar-item__link">Người quản trị</a>
         </li>
-        <li class="admin-sidebar-item">
-            <a href="/admin/statistical" class="admin-sidebar-item__link">Thống kê</a>
+<!--        <li class="admin-sidebar-item">-->
+<!--            <a href="/admin/statistical" class="admin-sidebar-item__link">Thống kê</a>-->
+<!--        </li>-->
+        <li class="admin-sidebar-item has-submenu">
+            <a class="admin-sidebar-item__link" href="#">Thống kê</a>
+            <ul class="sidebar-sub-menu collapse">
+                <li class="admin-sidebar-sub-item"><a class="admin-sidebar-sub-item__link" href="/admin/statistical/date">Theo ngày</a></li>
+                <li class="admin-sidebar-sub-item"><a class="admin-sidebar-sub-item__link" href="/admin/statistical/month">Theo tháng</a></li>
+                <li class="admin-sidebar-sub-item"><a class="admin-sidebar-sub-item__link" href="/admin/statistical/quarter ">Theo quý</a></li>
+                <li class="admin-sidebar-sub-item"><a class="admin-sidebar-sub-item__link" href="/admin/statistical/year">Theo năm</a></li>
+            </ul>
         </li>
         <li class="admin-sidebar-item">
             <a href="/admin/auth/logout" class="admin-sidebar-item__link d-flex align-items-center">

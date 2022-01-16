@@ -75,7 +75,7 @@
 /* -------------------------------------------------------------------- */
 
 .admin-sidebar-header{
-    height: 220px;
+    height: 200px;
     color: #fff;
     text-align: center;
 }
@@ -125,7 +125,8 @@
 }
 
 
-.admin-sidebar-item__link{
+.admin-sidebar-item__link,
+.admin-sidebar-sub-item__link{
     display: block;
     height: 50px;
     line-height: 50px;
@@ -141,6 +142,8 @@
     background-color: #2d3238;
     color: var(--white-color);
 }   
+
+
 
 
 /* -------------------------------------------------------------------- */

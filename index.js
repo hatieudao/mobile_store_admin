@@ -8,7 +8,7 @@ const logger = require('morgan')
 const path = require('path')
 const bodyParser = require('body-parser')
 const session = require("express-session")
-const passport = require('./auth/passport')
+const passport = require('./auth/admin/passport')
 const pagiHelper = require('express-handlebars-paginate');
 const expressHandlebarsSections = require('express-handlebars-sections');
 
@@ -17,7 +17,6 @@ hbs.registerPartials(__dirname + '/views/partials', function (err) { });
 hbs.registerHelper('createPagination', pagiHelper.createPagination);
 hbs.registerHelper('section', expressHandlebarsSections());
 hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
-
   switch (operator) {
     case '==':
       return (v1 == v2) ? options.fn(this) : options.inverse(this);
@@ -44,6 +43,10 @@ hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
   }
 });
 
+hbs.registerHelper('sumInt', function (a, b) {
+  return parseInt(a) + parseInt(b);
+})
+
 app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -54,7 +57,7 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 // Database
 const db = require('./config/database')
 db.authenticate()
-  .then(() => console.log("DB connected...........\n"))
+  .then(() => console.log("DB connected..........."))
   .catch(err => console.log("Error......." + err))
 
 //////////////////////
@@ -72,8 +75,18 @@ app.use(function (req, res, next) {
 });
 
 
+// Public route
+const homeRouter = require('./routes/index');
+//const registerRouter = require('./routes/public/register.route');
+
+// User route
+
 // Admin route
+
+
 const adminRouter = require('./routes')
+
+
 
 
 app.set("views", "./views")
@@ -89,8 +102,11 @@ app.use(function (req, res, next) {
   res.locals.user = req.user;
   next();
 });
-app.use('/', adminRouter);
+
+app.use('/', homeRouter);
+
 app.use('/admin', adminRouter);
+
 
 // catch 404 and forward to error handler
 app.use('*', (req, res) => res.render('404', { layout: '404' }))

@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="admin-container-content">
         <header class="admin-container-content-header">
@@ -5,77 +6,126 @@
                 Dashboard
             </h1>
         </header>
-        <ul class="row admin-dashboard-list">
-            <li class="col-lg-4 mb-4">
-                <div class="admin-dashboard-item">
-                    <h3 class="admin-dashboard-item__title">Sản phẩm đang bán</h3>
-                    <span class="admin-dashboard-item-count">5</span>
-                    <ul class="container admin-dashboard-item-infor-list">
-                        <li class="row admin-dashboard-item-infor-item">
-                            <span class="col-8 admin-dashboard-item-infor-item__label">Sắp hết hàng</span>
-                            <span class="col-4 admin-dashboard-item-infor-item__description">5</span>
-                        </li>
-                        <li class="row admin-dashboard-item-infor-item">
-                            <span class="col-8 admin-dashboard-item-infor-item__label">Lợi nhuận tháng này</span>
-                            <span class="col-4 admin-dashboard-item-infor-item__description">213213
-                                                <span>đ</span>
-                                            </span>
-                        </li>
-                    </ul>
-                    <button class="btn btn-light admin-dashboard-item-btn">
-                        <a href="" class="admin-dashboard-item-btn__link">Thêm sản phẩm</a>
-                    </button>
-                    <button class="btn btn-light admin-dashboard-item-btn">
-                        <a href="" class="admin-dashboard-item-btn__link">Danh sách sản phẩm</a>
-                    </button>
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="card-box bg-blue">
+                    <div class="inner">
+                        <h3>{{countProducts}}</h3>
+                        <p> Số sản phẩm đang bán </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                    </div>
+                    <a href="/admin/product" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
-            </li>
-            <li class="col-lg-4 mb-4">
-                <div class="admin-dashboard-item">
-                    <h3 class="admin-dashboard-item__title">Đơn hàng đang chờ xử lý</h3>
-                    <span class="admin-dashboard-item-count">5</span>
-                    <ul class="container admin-dashboard-item-infor-list">
-                        <li class="row admin-dashboard-item-infor-item">
-                            <span class="col-8 admin-dashboard-item-infor-item__label">Cần xác nhận</span>
-                            <span class="col-4 admin-dashboard-item-infor-item__description">5</span>
-                        </li>
-                        <li class="row admin-dashboard-item-infor-item">
-                            <span class="col-8 admin-dashboard-item-infor-item__label">Đang giao</span>
-                            <span class="col-4 admin-dashboard-item-infor-item__description">4</span>
-                        </li>
-                        <li class="row admin-dashboard-item-infor-item">
-                        </li>
-                    </ul>
-                    <button class="btn btn-light admin-dashboard-item-btn">
-                        <a href="" class="admin-dashboard-item-btn__link">Xác nhận đơn hàng</a>
-                    </button>
-                    <button class="btn btn-light admin-dashboard-item-btn">
-                        <a href="" class="admin-dashboard-item-btn__link">Đơn hàng đang giao</a>
-                    </button>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="card-box bg-green">
+                    <div class="inner">
+                        <h3>{{countWaitingOrders}}</h3>
+                        <p> Đơn hàng chờ xử lý </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-clipboard-list" aria-hidden="true"></i>
+                    </div>
+                    <a href="/admin/order?state=waiting+to+confirm" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
-            </li>
-            <li class="col-lg-4 mb-4">
-                <div class="admin-dashboard-item">
-                    <h3 class="admin-dashboard-item__title"> Doanh thu hôm nay</h3>
-                    <span class="admin-dashboard-item-count">5</span>
-                    <ul class="container admin-dashboard-item-infor-list">
-                        <li class="row admin-dashboard-item-infor-item">
-                            <span class="col-8 admin-dashboard-item-infor-item__label">Số đơn hôm nay</span>
-                            <span class="col-4 admin-dashboard-item-infor-item__description">5</span>
-                        </li>
-                        <li class="row admin-dashboard-item-infor-item">
-                            <span class="col-8 admin-dashboard-item-infor-item__label">Doanh thu tháng này</span>
-                            <span class="col-4 admin-dashboard-item-infor-item__description">4</span>
-                        </li>
-                    </ul>
-                    <button class="btn btn-light admin-dashboard-item-btn">
-                        <a href="" class="admin-dashboard-item-btn__link">Thống kê bán hàng</a>
-                    </button>
-                    <button class="btn btn-light admin-dashboard-item-btn">
-                        <a href="" class="admin-dashboard-item-btn__link">Thống kê sản phẩm</a>
-                    </button>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card-box bg-orange">
+                    <div class="inner">
+                        <h3>{{countNormalUsers}}</h3>
+                        <p> Số người dùng </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    </div>
+                    <a href="/admin/user" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
-            </li>
-        </ul>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card-box bg-red">
+                    <div class="inner">
+                        <h3>{{turnoverMonth}}</h3>
+                        <p> Doanh thu tháng này </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                    </div>
+                    <a href="/admin/statistical" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <h2 class="row py-2 text-secondary">
+                Top 10 sản phẩm bán chạy
+            </h2>
+        </div>
+        <div class="row py-4">
+            <table class="table table-bordered admin-table">
+                <thead class="admin-table-thead">
+                <tr>
+                    <td class="text-center">
+                        STT
+                    </td>
+                    <th class="text-center">
+                        ID
+                    </th>
+                    <th>
+                        Tên
+                    </th>
+                    <th>
+                        Thương hiệu
+                    </th>
+                    <th>
+                        Giá
+                    </th>
+                    <th>
+                        Rating
+                    </th>
+                    <th>
+                        Số lượng
+                    </th>
+                    <th>
+                        Chi tiết
+                    </th>
+                    <th>
+                        Trạng thái
+                    </th>
+                    <th>
+                        Ảnh
+                    </th>
+                </tr>
+                </thead>
+                <tbody class="admin-table-tbody" id="tableData">
+                {{#each topProducts}}
+                    <tr>
+                        <td class="text-center">{{sumInt @index 1}}</td>
+                        <td class="text-center">{{[option.mobile.id]}}</td>
+                        <td>{{[option.mobile.full_name]}}</td>
+                        <td>{{[option.mobile.brand.name]}}</td>
+                        <td>{{[option.mobile.price]}}</td>
+                        <td>{{[option.mobile.rating]}}</td>
+                        <td>{{countOrderDetail}}</td>
+                        <td class="text-center">
+                            <a href="/admin/product/{{id}}">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </td>
+
+                        <td>
+                            {{[option.mobile.status]}}
+                        </td>
+                        <td>
+                            <img src="{{picture.link}}" style="width: 50px;" />
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>

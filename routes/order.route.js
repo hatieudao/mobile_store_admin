@@ -4,7 +4,7 @@ var router = express.Router();
 
 const orderController = require('../controllers/admin.order.controller');
 
-router.get('/', orderController.orderList);
+router.get('/',orderController.orderList);
 
 router.get('/:id', orderController.orderItem);
 

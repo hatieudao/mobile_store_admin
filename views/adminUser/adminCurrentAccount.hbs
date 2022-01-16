@@ -5,35 +5,31 @@
                 Thông tin Admin
             </h1>
         </header>
-        <form class="" action="/admin/adminUser/currentAccount/update" enctype="multipart/form-data" method="post">
+        <form id="updateForm" action="/admin/adminUser/currentAccount/update" enctype="multipart/form-data" method="post">
             <div class="">
-                <div class="row justify-content-end">
-                    <div class="col-sm-4 text-center">
+                <div class="row justify-content-lg-end justify-content-sm-center">
+                    <div class="col-xl-4 col-lg-6 col-sm-6 text-center">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPasswordModal">
                             <i class="fas fa-pencil-alt"></i>
                             Đổi mật khẩu
                         </button>
-
-                        <button id="updateBtn" type="submit" class="btn btn-success shadow-none" data-toggle="modal">
+                        <button id="updateBtn" type="button" class="btn btn-success shadow-none" data-toggle="modal">
                             <i class="fa fa-pencil"></i>
                             Lưu chỉnh sửa
                         </button>
                     </div>
                 </div>
             </div>
-
-
-
             <div class="">
                 <div class="row justify-content-center">
-                    <h2 class="row py-4 text-secondary">
+                    <h2 class="row py-2 text-secondary">
                         Thông tin tài khoản
                     </h2>
                 </div>
                 <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-9">
+                    <div class="col-lg-9 col-sm-12">
                         <div class="row justify-content-center">
-                            <div class="col-lg-8">
+                            <div class="col-lg-8 col-sm-10">
                                 <div class="row align-items-center">
                                     <div class="col-lg-3 py-2">
                                         ID
@@ -74,8 +70,12 @@
                             <img id="adminAvatarImg" src="{{adminUser.avatar}}" style="width: 100%"/>
                         </div>
                         <div class="mt-2">
-                            <input name="avatar" accept="image/*" type='file' id="avatarInput"/>
+                            <input id="adminAvatarImgInput" name="avatar" accept="image/*" type='file'/>
                         </div>
+                        <button id="cancelAvatarInputBtn" class="btn btn-warning text-center" type="button">
+                            <i class="fas fa-window-close"></i>
+                            Hủy
+                        </button>
                     </div>
                 </div>
             </div>
@@ -86,24 +86,37 @@
                     </h2>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 col-md-12">
                         <div class="row align-items-center">
                             <div class="col-lg-3 py-2">
-                                Số điện thoại
+                                Họ tên
                             </div>
                             <div class="col-lg-9 py-2">
-                                <input class="form-control shadow-none" name="phone_number" type="number" placeholder="{{adminUser.phone_number}}" value="{{adminUser.phone_number}}">
+                                <input class="form-control shadow-none" name="full_name" type="text" placeholder="{{adminUser.full_name}}" value="{{adminUser.full_name}}">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 col-md-12">
                         <div class="row align-items-center">
                             <div class="col-lg-3 py-2">
-                                Địa chỉ
+                                Số điện thoại
                             </div>
                             <div class="col-lg-9 py-2">
+                                <input class="form-control shadow-none" name="phone_number" id="phoneNumber" type="tel" placeholder="{{adminUser.phone_number}}" value="{{adminUser.phone_number}}">
+                            </div>
+                        </div>
+                        <p id="existPhoneNumber"></p>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 col-sm-12 py-2">
+                                Địa chỉ
+                            </div>
+                            <div class="col-lg-9 col-sm-12 py-2">
                                 <input class="form-control shadow-none" name="address" type="text" placeholder="{{adminUser.address}}" value="{{adminUser.address}}">
                             </div>
                         </div>
@@ -115,9 +128,29 @@
     </div>
 </div>
 
+<div id="saveUpdateModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn chắc chắn lưu chỉnh sửa?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="saveUpdateBtn" type="submit" class="btn btn-primary" form="updateForm">Save</button>
+                <button id="closeSaveModalBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="editPasswordModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <form class="modal-content" action="/admin/adminUser/currentAccount/changePassword" method="post">
+        <form class="modal-content" id="changePassword" action="/admin/adminUser/currentAccount/changePassword" method="post">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -126,7 +159,12 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Nhập Mật khẩu mới</label>
+                    <label>Nhập mật khẩu hiện tại</label>
+                    <input name="oldPassword" id="oldPassword" type="password" class="form-control" required>
+                </div>
+                <p id="incorrectPassword"></p>
+                <div class="form-group">
+                    <label>Nhập mật khẩu mới</label>
                     <input name="newPassword" id="newPassword" type="password" class="form-control" required>
                 </div>
                 <p id="errorPassword"></p>
@@ -137,7 +175,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="submitEditPassWordBtn" type="submit" class="btn btn-primary">Save changes</button>
+                <button id="submitEditPassWordBtn" type="button" class="btn btn-primary">Save changes</button>
             </div>
         </form>
     </div>
@@ -145,21 +183,104 @@
 
 {{#section 'script'}}
     <script>
+        let phoneNumbers = new Array()
+        const curPhoneNumber = $("#phoneNumber").val().split(" ").join("");
+        const curAvatarSrc = $("#adminAvatarImg").attr("src");
+
+        $(document).ready(function() {
+
+            $.ajax({
+                url: "/admin/api/adminUser/phoneNumber",
+                success(data){
+                    console.log("ajax phone number");
+                    phoneNumbers = data.phoneNumbers;
+                }
+            });
+
+            $("#cancelAvatarInputBtn").hide();
+        });
+
+        $("#updateBtn").click(function (e){
+            const phoneNumber = $("#phoneNumber").val().split(" ").join("");;
+            if(curPhoneNumber !== phoneNumber){
+                const isExistPhoneNumber = phoneNumbers.includes(phoneNumber);
+                if(isExistPhoneNumber){
+                    e.preventDefault();
+                    console.log("Số điện thoại đã tồn tại")
+                    $("#existPhoneNumber").html("Số điện thoại đã tồn tại");
+                    $("#existPhoneNumber").addClass("text-danger");
+                    // $("#closeSaveModalBtn").click();
+                }
+                else{
+                    $("#existPhoneNumber").html("");
+                    $("#saveUpdateModal").modal('show');
+                    // $("#updateForm").submit();
+                }
+            }
+            else
+            {
+                $("#saveUpdateModal").modal('show');
+                // $("#updateForm").submit();
+            }
+        })
 
 
         $('#submitEditPassWordBtn').click(function (e){
-            const newPassword = $("#newPassword").val();
-            const newPasswordAgain = $("#newPasswordAgain").val();
 
-            if(newPassword !== newPasswordAgain){
-                e.preventDefault();
-                console.log("Mật khẩu sai")
-                $("#errorPassword").html("Mật khẩu nhập lại không đúng");
-                $("#submitEditPassWordBtn").prop('disabled', false);
-            }
-            else{
+            // e.preventDefault();
+            const oldPassword = $("#oldPassword").val();
 
-            }
+            $.ajax({
+                // url: "/admin/api/product?page=1",
+                url: "/admin/api/adminUser/checkPassword",
+                data: JSON.stringify({
+                    "oldPassword": oldPassword,
+                }),
+                dataType:'json',
+                contentType: "application/json",
+                method: "POST",
+                    success: function (data){
+                    console.log("Kiểm tra old password");
+                    const isCorrectPassword = data.isCorrectPassword;
+                    if(!isCorrectPassword){
+                        console.log("Mật khẩu cũ không chính xác");
+                        // e.preventDefault();
+                        $("#incorrectPassword").html("Mật khẩu không chính xác");
+                        $("#incorrectPassword").addClass("text-danger");
+                    }
+                    else {
+                        console.log("Mật khẩu cũ chính xác");
+                        $("#incorrectPassword").html("Mật khẩu cũ chính xác");
+                        $("#incorrectPassword").addClass("text-success");
+                        const newPassword = $("#newPassword").val();
+                        const newPasswordAgain = $("#newPasswordAgain").val();
+                        if(newPassword !== newPasswordAgain){
+                            // e.preventDefault();
+                            console.log("Mật khẩu sai")
+                            $("#errorPassword").html("Mật khẩu nhập lại không đúng");
+                            $("#errorPassword").addClass("text-danger");
+                            $("#submitEditPassWordBtn").prop('disabled', false);
+                        }
+                        else{
+                            $("#changePassword").submit();
+                        }
+                    }
+                }
+            })
+        })
+
+        $("#adminAvatarImgInput").change(function(e) {
+            console.log("change avatar");
+            const file = e.target.files[0];
+            const src = URL.createObjectURL(file);
+            $("#adminAvatarImg").attr("src",src);
+            $("#cancelAvatarInputBtn").show();
+        });
+
+        $("#cancelAvatarInputBtn").click(function (e){
+            $("#adminAvatarImgInput").val("");
+            $("#adminAvatarImg").attr("src",curAvatarSrc);
+            $("#cancelAvatarInputBtn").hide();
         })
 
 

@@ -12,38 +12,24 @@
                         <div class="row pb-2">
                             <div class="pb-2 col-lg-2 col-md-4">
                                 <div class="d-flex justify-content-between">
-                                    <input name="productId" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="ID sản phẩm"
-                                        {{#if filter.productId}}
-                                           value="{{filter.productId}}"
-                                        {{/if}}
-                                    >
+                                    <input name="productId" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="ID sản phẩm" {{#if filter.productId}} value="{{filter.productId}}" {{/if}} >
                                 </div>
                             </div>
                             <div class="pb-2 col-lg-4 col-md-8">
                                 <div class="d-flex justify-content-between">
-                                    <input name="productName" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Tên sản phẩm"
-                                        {{#if filter.productName}}
-                                           value="{{filter.productName}}"
-                                        {{/if}}
-                                    >
+                                    <input name="productName" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Tên sản phẩm" {{#if filter.productName}} value="{{filter.productName}}"
+                                    {{/if}} >
                                 </div>
                             </div>
                             <div class="pb-2 col-lg-2 col-md-4">
                                 <div class="d-flex justify-content-between">
-                                    <input name="brandId" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="ID thương hiệu"
-                                        {{#if filter.brandId}}
-                                           value="{{filter.brandId}}"
-                                        {{/if}}
-                                    >
+                                    <input name="brandId" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="ID thương hiệu" {{#if filter.brandId}} value="{{filter.brandId}}" {{/if}} >
                                 </div>
                             </div>
                             <div class="pb-2 col-lg-4 col-md-8">
                                 <div class="d-flex justify-content-between dropdown-menu-group">
-                                    <input name="brandName" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Tên thương hiệu"
-                                        {{#if filter.brandName}}
-                                           value="{{filter.brandName}}"
-                                        {{/if}}
-                                    >
+                                    <input name="brandName" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Tên thương hiệu" {{#if filter.brandName}} value="{{filter.brandName}}"
+                                    {{/if}} >
                                     <div class="">
                                         <button class="btn btn-outline-secondary dropdown-toggle shadow-none" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                         <ul class="dropdown-menu dropdown-menu-right">
@@ -56,85 +42,64 @@
                             </div>
                         </div>
                         <div class="row pb-2">
-                            <div class="pb-2 col-lg-4 col-md-6">
+                            <div class="pb-2 col-lg-3 col-md-6">
                                 <div class="form-group">
                                     <label>Rating thấp nhất</label>
-                                    <input name="minRating" type="text" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button" placeholder="Rating cao nhất"
-                                        {{#if filter.minRating}}
-                                           value="{{filter.minRating}}"
-                                        {{/if}}
-                                    >
+                                    <input name="minRating" type="text" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button" placeholder="Rating cao nhất" {{#if filter.minRating}} value="{{filter.minRating}}"
+                                    {{/if}} >
                                 </div>
 
                                 <div class="form-group">
                                     <label>Rating cao nhất</label>
-                                    <input name="maxRating" type="text" class="mb-2 form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Rating thấp nhất"
-                                        {{#if filter.maxRating}}
-                                           value="{{filter.maxRating}}"
-                                        {{/if}}
-                                    >
+                                    <input name="maxRating" type="text" class="mb-2 form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Rating thấp nhất" {{#if filter.maxRating}} value="{{filter.maxRating}}"
+                                    {{/if}} >
                                 </div>
                             </div>
-                            <div class="pb-2 col-lg-4 col-md-6">
+                            <div class="pb-2 col-lg-3 col-md-6">
                                 <div class="form-group">
                                     <label>Giá thấp nhất</label>
-                                    <input name="minPrice" type="text" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button" placeholder="Giá thấp nhất"
-                                        {{#if filter.minPrice}}
-                                           value="{{filter.minPrice}}"
-                                        {{/if}}
+                                    <input name="minPrice" type="text" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button" placeholder="Giá thấp nhất" {{#if filter.minPrice}} value="{{filter.minPrice}}" {{/if}}
                                     >
                                 </div>
 
                                 <div class="form-group">
                                     <label>Giá cao nhất</label>
-                                    <input name="maxPrice" type="text" class="mb-2 form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Giá cao nhất"
-                                        {{#if filter.maxPrice}}
-                                           value="{{filter.maxPrice}}"
-                                        {{/if}}
+                                    <input name="maxPrice" type="text" class="mb-2 form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Giá cao nhất" {{#if filter.maxPrice}} value="{{filter.maxPrice}}" {{/if}}
                                     >
                                 </div>
                             </div>
 
-                            <div class="pb-2 col-lg-4 col-md-6">
+                            <div class="pb-2 col-lg-3 col-md-6">
                                 <div class="form-group">
                                     <label>Tạo từ ngày</label>
-                                    <input name="minCreatedDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button"
-                                        {{#if filter.minCreatedDate}}
-                                           value="{{filter.minCreatedDate}}"
-                                        {{/if}}
+                                    <input name="minCreatedDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button" {{#if filter.minCreatedDate}} value="{{filter.minCreatedDate}}" {{/if}} >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Đến ngày</label>
+                                    <input name="maxCreatedDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button" {{#if filter.maxCreatedDate}} value="{{filter.maxCreatedDate}}" {{/if}} >
+                                </div>
+                            </div>
+                            <div class="pb-2 col-lg-3 col-md-6">
+                                <div class="form-group">
+                                    <label>Cập nhập từ ngày</label>
+                                    <input name="minUpdatedDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button"
+                                            {{#if filter.minUpdatedDate}}
+                                           value="{{filter.minUpdatedDate}}"
+                                            {{/if}}
                                     >
                                 </div>
 
                                 <div class="form-group">
                                     <label>Đến ngày</label>
-                                    <input name="maxCreatedDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button"
-                                        {{#if filter.maxCreatedDate}}
-                                           value="{{filter.maxCreatedDate}}"
-                                        {{/if}}
+                                    <input name="maxUpdatedDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button"
+                                            {{#if filter.maxUpdatedDate}}
+                                           value="{{filter.maxUpdatedDate}}"
+                                            {{/if}}
                                     >
                                 </div>
                             </div>
-<!--                            <div class="pb-2 col-lg-3 col-md-6">-->
-<!--                                <div class="form-group">-->
-<!--                                    <label>Cập nhập từ ngày</label>-->
-<!--                                    <input name="minUpdatedDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button"-->
-<!--                                        {{#if filter.minUpdatedDate}}-->
-<!--                                           value="{{filter.minUpdatedDate}}"-->
-<!--                                        {{/if}}-->
-<!--                                    >-->
-<!--                                </div>-->
-
-<!--                                <div class="form-group">-->
-<!--                                    <label>Đến ngày</label>-->
-<!--                                    <input name="maxUpdatedDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button"-->
-<!--                                        {{#if filter.maxUpdatedDate}}-->
-<!--                                           value="{{filter.maxUpdatedDate}}"-->
-<!--                                        {{/if}}-->
-<!--                                    >-->
-<!--                                </div>-->
-<!--                            </div>-->
                         </div>
-
                     </div>
                     <div class="col-lg-1 d-flex justify-content-end">
                         <button id="resetBtn" type="button" class="btn btn-warning left">
@@ -155,23 +120,16 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="d-flex justify-content-between">
-                                            <input name="limit" id="limit" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Số dòng"
-                                                {{#if pagination.limit}}
-                                                   value="{{pagination.limit}}"
-                                                {{/if}}
-                                            >
+                                            <input name="limit" id="limit" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Số dòng" {{#if pagination.limit}} value="{{pagination.limit}}"
+                                            {{/if}} >
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 ">
+                            <div class="col-lg-6">
                                 <div class="row align-items-center">
                                     <div class="select-menu-group">
-                                        <input type="hidden" id="filterStatus"
-                                            {{#if filter.status}}
-                                               value="{{filter.status}}"
-                                            {{/if}}
-                                        >
+                                        <input type="hidden" id="filterStatus" {{#if filter.status}} value="{{filter.status}}" {{/if}} >
                                         <select name="status" id="status" class="form-select">
                                             <option value="0">Tất cả</option>
                                             <option value="exist">Tồn tại</option>
@@ -196,56 +154,54 @@
                     </div>
                 </div>
             </form>
-
-
         </div>
 
         <form class="row py-4" name="deleteAllForm" id="deleteAllForm" action="/admin/product/deleteAll">
             <table class="table table-bordered admin-table">
                 <thead class="admin-table-thead">
-                    <tr>
-                        <th>
-                            <input class="form-check-input" type="checkbox" id="selectAll" name="selectAll">
-                        </th>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            Tên
-                        </th>
-                        <th>
-                            Thương hiệu
-                        </th>
-                        <th>
-                            Giá
-                        </th>
-                        <th>
-                            Rating
-                        </th>
-                        <th>
-                            Ngày tạo
-                        </th>
-                        <th>
-                            Ngày cập nhập
-                        </th>
-                        <th>
-                            Chi tiết
-                        </th>
-                        <th>
-                            Trạng thái
-                        </th>
-                        <th>
-                            Ảnh
-                        </th>
-                    </tr>
+                <tr>
+                    <th>
+                        <input class="form-check-input" type="checkbox" id="selectAll" name="selectAll" />
+                    </th>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Tên
+                    </th>
+                    <th>
+                        Thương hiệu
+                    </th>
+                    <th>
+                        Giá
+                    </th>
+                    <th>
+                        Rating
+                    </th>
+                    <th>
+                        Ngày tạo
+                    </th>
+                    <th>
+                        Ngày cập nhập
+                    </th>
+                    <th>
+                        Chi tiết
+                    </th>
+                    <th>
+                        Trạng thái
+                    </th>
+                    <th>
+                        Ảnh
+                    </th>
+                </tr>
                 </thead>
-                <tbody class="admin-table-tbody" id="productList">
-                    {{#each products}}
+                <tbody class="admin-table-tbody" id="tableData">
+                {{#each products}}
                     <tr>
                         <td>
-                        {{#ifCond status "===" "exist" }}
-                            <input class="form-check-input select-row-checkbox" type="checkbox" id="" name="deleteAll[]" value="{{id}}">
-                        {{/ifCond}}
+                            {{#ifCond status "===" "exist" }}
+                                <input class="form-check-input select-row-checkbox" type="checkbox" id="" name="deleteAll[]" value="{{id}}" />
+                            {{/ifCond}}
                         </td>
                         <td>{{id}}</td>
                         <td>{{full_name}}</td>
@@ -268,12 +224,12 @@
                             {{status}}
                         </td>
                         <td>
-                            <img src="{{picture.link}}" style="width: 50px">
+                            <img src="{{picture.link}}" style="width: 50px;" />
                         </td>
                     </tr>
-                    {{/each}}
+                {{/each}}
 
-                    <script type="text/x-handlebars-template" id="productListTemplate">
+                <script type="text/x-handlebars-template" id="tableDataTemplate">
 
                         \{{#each products}}
                             <tr>
@@ -314,18 +270,17 @@
 
         <footer class="row justify-content-center">
             <nav class="col-lg-3 col-md-6 col-sm-9" aria-label="Page navigation example" id="pagination">
-                <input type="hidden" id="apiPath" value="/product">
                 {{{createPagination pagination paginationClass="pagination"}}}
+
+                <script type="text/x-handlebars-template" id="paginationTemplate">
+                    \{{{createPagination pagination paginationClass="pagination"}}}
+                </script>
             </nav>
-
-        <script type="text/x-handlebars-template" id="productListTemplate">
-
         </footer>
     </div>
 </div>
+
 {{#section 'script'}}
     <script src="/adminStyle/js/filterSelect.js"></script>
-    <script src="/adminStyle/js/pagination.js"></script>
+    <script src="/adminStyle/js/productPagination.js"></script>
 {{/section}}
-
-

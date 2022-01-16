@@ -5,19 +5,28 @@
                 Thông tin Admin
             </h1>
         </header>
-<!--        <form name="deleteProductForm" id="deleteProductForm" action="/admin/product/{{adminUser.id}}/delete">-->
-<!--        </form>-->
+
         <div class="">
-<!--            <div class="">-->
-<!--                <div class="row justify-content-end">-->
-<!--                    <div class="col-sm-4 text-center">-->
-<!--                        <button type="submit" class="btn btn-danger shadow-none" form="deleteProductForm">-->
-<!--                            <i class="fa fa-times-circle"></i>-->
-<!--                            Xóa-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="">
+                <div class="row justify-content-end">
+                    <div class="col-sm-4 text-center">
+                        {{#ifCond ../user.id '!==' id }}
+                            {{#ifCond adminUser.status "===" "lock" }}
+                                <button type="submit" class="btn btn-success shadow-none" data-toggle="modal" data-target="#saveModal">
+                                    <i class="fas fa-unlock"></i>
+                                    Mở khóa
+                                </button>
+                            {{else}}
+                                <button type="submit" class="btn btn-danger shadow-none" data-toggle="modal" data-target="#saveModal">
+                                    <i class="fas fa-lock"></i>
+                                    Khóa
+                                </button>
+                            {{/ifCond}}
+                        {{/ifCond}}
+
+                    </div>
+                </div>
+            </div>
             <div class="">
                 <div class="row justify-content-center">
                     <h2 class="row py-4 text-secondary">
@@ -62,6 +71,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-3 py-2">
+                                        Tình trạng
+                                    </div>
+                                    <div class="col-lg-9 py-2">
+                                        <input class="form-control shadow-none" name="status" type="text" placeholder="Tình trạng" value="{{adminUser.status}}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-3 col-md-6 align-items-center justify-content-center">
                         <div style="border: solid 1px #ccc">
@@ -102,8 +123,29 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
 
+
+<div id="saveModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn chắc chắn khóa tài khoản?</p>
+            </div>
+            <div class="modal-footer">
+                <form action="/admin/adminUser/{{adminUser.id}}/toggleLock">
+                    <button id="" type="submit" class="btn btn-primary">Save</button>
+                </form>
+                <button id="" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

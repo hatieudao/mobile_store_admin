@@ -163,7 +163,7 @@
                     </th>
                 </tr>
                 </thead>
-                <tbody class="admin-table-tbody">
+                <tbody class="admin-table-tbody" id="tableData">
                 {{#each adminUsers}}
                     <tr>
                         <td>
@@ -190,14 +190,48 @@
                         <td>
                             {{status}}
                         </td>
+                    </tr>
                 {{/each}}
-                </tr>
+                <script type="text/x-handlebars-template" id="tableDataTemplate">
+                \{{#each adminUsers}}
+                    <tr>
+                        <td>
+                            \{{#ifCond ../user.id '!==' id }}
+                    \{{#ifCond status "===" "unlock"}}
+                                    <input class="form-check-input select-row-checkbox" type="checkbox" id="" name="lockAll[]" value="\{{id}}">
+                                \{{/ifCond}}
+                \{{/ifCond}}
+
+                        </td>
+                        <td>\{{id}}</td>
+                        <td>\{{username}}</td>
+                        <td>\{{full_name}}</td>
+                        <td>\{{phone_number}}</td>
+                        <td>\{{created_at}}</td>
+                        <td class="text-center">
+                            <a href="/admin/adminUser/\{{id}}">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <img src="\{{avatar}}" alt="" class="">
+                        </td>
+                        <td>
+                            \{{status}}
+                        </td>
+                    </tr>
+                \{{/each}}
+                </script>
                 </tbody>
             </table>
         </form>
         <footer class="row justify-content-center">
             <nav class="col-lg-3 col-md-6 col-sm-9" aria-label="Page navigation example" id="pagination">
                 {{{createPagination pagination paginationClass="pagination"}}}
+
+                <script type="text/x-handlebars-template" id="paginationTemplate">
+                    \{{{createPagination pagination paginationClass="pagination"}}}
+                </script>
             </nav>
         </footer>
     </div>
@@ -205,5 +239,5 @@
 
 {{#section 'script'}}
     <script src="/adminStyle/js/filterSelect.js"></script>
-    <script src="/adminStyle/js/pagination.js"></script>
+    <script src="/adminStyle/js/adminUserPagination.js"></script>
 {{/section}}

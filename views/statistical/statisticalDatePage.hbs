@@ -1,0 +1,116 @@
+<div class="container">
+    <div class="admin-container-content">
+        <header>
+            <h1 class="row py-2 text-primary">
+                Thống kê
+            </h1>
+        </header>
+        <div class="row py-4">
+            <form class="" name="filterForm">
+                <div class="row align-items-start justify-content-between">
+                    <div class="col-lg-10">
+                        <div class="row pb-2">
+                            <div class="pb-2 col-lg-3 col-md-6">
+                                <div class="form-group">
+                                    <label>Tạo từ ngày</label>
+                                    <input name="minDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button" {{#if filter.minDate}} value="{{filter.minDate}}" {{/if}} >
+                                </div>
+
+                            </div>
+                            <div class="pb-2 col-lg-3 col-md-6">
+                                <div class="form-group">
+                                    <label>Đến ngày</label>
+                                    <input name="maxDate" type="date" class="mb-2 form-control shadow-none"aria-label="Text input with dropdown button" {{#if filter.maxDate}} value="{{filter.maxDate}}" {{/if}} >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 d-flex justify-content-end">
+                        <button id="resetBtn" type="button" class="btn btn-warning left">
+                            Reset
+                        </button>
+                        <button id="searchBtn" type="submit" class="btn btn-primary left">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row pb-2 d-flex align-items-center justify-content-between">
+                    <div class="col-lg-4 pb-2">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        Số dòng
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="d-flex justify-content-between">
+                                            <input name="limit" id="limit" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Số dòng" {{#if pagination.limit}} value="{{pagination.limit}}"
+                                            {{/if}} >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <form class="row py-4" name="deleteAllForm" id="deleteAllForm" action="/admin/product/deleteAll">
+            <table class="table table-bordered admin-table">
+                <thead class="admin-table-thead">
+                <tr>
+                    <th class="text-center">
+                        Thời gian
+                    </th>
+                    <th class="text-center">
+                        Số lượng sản phẩm
+                    </th>
+                    <th class="text-center">
+                        Số đơn hàng
+                    </th>
+                    <th class="text-center">
+                        Doanh thu
+                    </th>
+                </tr>
+                </thead>
+                <tbody class="admin-table-tbody" id="tableData">
+                {{#each statistics}}
+                    <tr>
+                        <td class="text-center">{{created_at_date}}</td>
+                        <td class="text-center">{{count_options}}</td>
+                        <td class="text-center">{{count_orders}}</td>
+                        <td class="text-center">{{total_money}}</td>
+                    </tr>
+                {{/each}}
+
+                    <script type="text/x-handlebars-template" id="tableDataTemplate">
+                        \{{#each statistics}}
+                            <tr>
+                                <td class="text-center">\{{created_at_date}}</td>
+                                <td class="text-center">\{{count_options}}</td>
+                                <td class="text-center">\{{count_orders}}</td>
+                                <td class="text-center">\{{total_money}}</td>
+                            </tr>
+                        \{{/each}}
+                    </script>
+                </tbody>
+            </table>
+        </form>
+
+        <footer class="row justify-content-center">
+            <nav class="col-lg-3 col-md-6 col-sm-9" aria-label="Page navigation example" id="pagination">
+                {{{createPagination pagination paginationClass="pagination"}}}
+
+                <script type="text/x-handlebars-template" id="paginationTemplate">
+                    \{{{createPagination pagination paginationClass="pagination"}}}
+                </script>
+            </nav>
+        </footer>
+    </div>
+</div>
+
+{{#section 'script'}}
+    <script src="/adminStyle/js/filterSelect.js"></script>
+    <script src="/adminStyle/js/statisticalDatePagination.js"></script>
+{{/section}}

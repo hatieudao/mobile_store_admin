@@ -7,68 +7,71 @@ const optionService = require("../services/admin.option.service");
 const pictureService = require("../services/admin.picture.service");
 
 exports.orderList = async (req, res) => {
-  const data = req.query;
+    const data = req.query;
 
-  const page = parseInt(data.page) || 1;
-  const limit = parseInt(data.limit) || 10;
+    const page = parseInt(data.page) || 1;
+    const limit = parseInt(data.limit) || 10;
 
-  //filter
-  //Lấy các giá trị filter
-  const filter = {
-    orderId: data.orderId,
-    customerId: data.customerId,
-    customerUsername: data.customerUsername,
-    customerPhoneNumber: data.customerPhoneNumber,
-    state: ((data.state) === '0') ? undefined : data.state,
-    minCreatedDate: data.minCreatedDate || new Date(2021, 0, 1),
-    maxCreatedDate: data.maxCreatedDate || new Date(),
-  }
-
-
-
-  const allOrders = await orderService.orderList(page, limit, filter, true);
-
-  const orders = allOrders.rows;
-
-  const count = allOrders.count;
+    //filter
+    //Lấy các giá trị filter
+    const filter = {
+        orderId: data.orderId,
+        customerId: data.customerId,
+        customerUsername: data.customerUsername,
+        customerPhoneNumber: data.customerPhoneNumber,
+        state: ((data.state) === '0') ? undefined : data.state,
+        minCreatedDate: data.minCreatedDate || new Date(2021, 0, 1),
+        maxCreatedDate: data.maxCreatedDate || new Date(),
+    }
 
 
-  const pagination = {
-    page: page,
-    limit: limit,
-    totalRows: count
-  }
 
-  res.render('order/orderList', { title: 'order List', layout: 'layout.hbs', orders, pagination, filter });
+    const allOrders = await orderService.orderList(page,limit, filter, true);
+
+    const orders = allOrders.rows;
+
+    const count = allOrders.count;
+
+
+    const pagination = {
+        page: page,
+        limit: limit,
+        totalRows: count
+    }
+
+    res.render('order/orderList', { title: 'order List', layout: 'layout.hbs', orders, pagination, filter});
 }
 
 exports.orderItem = async (req, res) => {
-  const id = parseInt(req.params.id);
-  console.log('id = ', id);
+    const id = parseInt(req.params.id);
+    console.log('id = ', id);
 
-  const order = await orderService.findOrderInforById(id, true);
-  const userId = order.user_id;
+    const order = await orderService.findOrderInforById(id, true);
+    const userId = order.user_id;
 
-  const orderDetailAndCount = await orderDetailService.findOrderDetailInforAndCountAllByOrderId(id, true);
-  const orderDetails = orderDetailAndCount.rows;
-  const countOrderDetails = orderDetailAndCount.count;
+    const orderDetailAndCount = await orderDetailService.findOrderDetailInforAndCountAllByOrderId(id, true);
+    const orderDetails = orderDetailAndCount.rows;
+    const countOrderDetails = orderDetailAndCount.count;
+
+    const countOrderByUserId = await orderService.countOrderByUserId(userId);
+    // const totalAllMoneyOfUser = await orderService.getAllMoneyByUserId(userId);
+    const orderTotalMoney = orderDetails.reduce(function (total, orderDetail) {
+        return total + parseInt(orderDetail['option.price']);
+    }, 0);
 
 
-  const countOrderByUserId = await orderService.countOrderByUserId(userId);
-
-
-  res.render('order/orderItem', { title: `Order ${id}`, layout: 'layout.hbs', order, orderDetails, countOrderDetails, countOrderByUserId });
+    res.render('order/orderItem', { title: `Order ${id}`, layout: 'layout.hbs', order, orderDetails, countOrderDetails, countOrderByUserId, orderTotalMoney});
 }
 
 
 exports.changeState = async (req, res) => {
-  const id = parseInt(req.params.id);
-  console.log('id = ', id);
-  const state = req.query.state;
+    const id = parseInt(req.params.id);
+    console.log('id = ', id);
+    const state = req.query.state;
 
-  await orderService.changeState(id, state);
+    await orderService.changeState(id, state);
 
-  res.redirect('/admin/order/' + id);
+    res.redirect('/admin/order/' + id);
 
 
 

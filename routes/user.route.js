@@ -4,10 +4,11 @@ var router = express.Router();
 const userController = require('../controllers/admin.user.controller');
 const adminUserController = require("../controllers/admin.adminUser.controller");
 
-router.get('/', userController.userList);
-router.get('/lockAll', userController.lockAllUser)
+router.get('/',userController.userList);
+router.get('/lockAll',userController.lockAllUser)
 
-router.get('/:id', userController.userAccount);
+router.get('/:id',userController.userAccount);
+router.get('/:id/toggleLock',userController.toggleLock);
 
 
 module.exports = router;

@@ -1,10 +1,10 @@
 --\i D:/web/mobile_store/mobile_store.sql
-DROP DATABASE mobile_store;
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
-CREATE DATABASE mobile_store;
-\c mobile_store;
--- \c dd973o83irqds8;
+-- DROP DATABASE mobile_store;
+-- DROP SCHEMA public CASCADE;
+-- CREATE SCHEMA public;
+-- CREATE DATABASE mobile_store;
+-- \c mobile_store;
+-- -- \c dd973o83irqds8;
 
 CREATE TABLE "users" (
   "id" SERIAL PRIMARY KEY,

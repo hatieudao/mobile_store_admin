@@ -60,16 +60,16 @@
             <table class="table table-bordered admin-table">
                 <thead class="admin-table-thead">
                 <tr>
-                    <th class="text-center">
+                    <th class="text-left">
                         Thời gian
                     </th>
-                    <th class="text-center">
+                    <th class="text-left">
                         Số lượng sản phẩm
                     </th>
-                    <th class="text-center">
+                    <th class="text-left">
                         Số đơn hàng
                     </th>
-                    <th class="text-center">
+                    <th class="text-left">
                         Doanh thu
                     </th>
                 </tr>
@@ -77,20 +77,20 @@
                 <tbody class="admin-table-tbody" id="tableData">
                 {{#each statistics}}
                     <tr>
-                        <td class="text-center">{{created_at_quarter}}</td>
-                        <td class="text-center">{{count_options}}</td>
-                        <td class="text-center">{{count_orders}}</td>
-                        <td class="text-center">{{total_money}}</td>
+                        <td class="text-left">{{created_at_quarter}}</td>
+                        <td class="text-left">{{count_options}}</td>
+                        <td class="text-left">{{count_orders}}</td>
+                        <td class="text-left">{{total_money}}</td>
                     </tr>
                 {{/each}}
 
                 <script type="text/x-handlebars-template" id="tableDataTemplate">
                         \{{#each statistics}}
                             <tr>
-                                <td class="text-center">\{{created_at_quarter}}</td>
-                                <td class="text-center">\{{count_options}}</td>
-                                <td class="text-center">\{{count_orders}}</td>
-                                <td class="text-center">\{{total_money}}</td>
+                                <td class="text-left">\{{created_at_quarter}}</td>
+                                <td class="text-left">\{{count_options}}</td>
+                                <td class="text-left">\{{count_orders}}</td>
+                                <td class="text-left">\{{total_money}}</td>
                             </tr>
                         \{{/each}}
                     </script>

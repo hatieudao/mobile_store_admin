@@ -245,20 +245,20 @@
                     if(!isCorrectPassword){
                         console.log("Mật khẩu cũ không chính xác");
                         // e.preventDefault();
-                        $("#incorrectPassword").html("Mật khẩu không chính xác");
                         $("#incorrectPassword").addClass("text-danger");
+                        $("#incorrectPassword").html("Mật khẩu không chính xác");
                     }
                     else {
                         console.log("Mật khẩu cũ chính xác");
-                        $("#incorrectPassword").html("Mật khẩu cũ chính xác");
                         $("#incorrectPassword").addClass("text-success");
+                        $("#incorrectPassword").html("Mật khẩu cũ chính xác");
                         const newPassword = $("#newPassword").val();
                         const newPasswordAgain = $("#newPasswordAgain").val();
                         if(newPassword !== newPasswordAgain){
                             // e.preventDefault();
                             console.log("Mật khẩu sai")
-                            $("#errorPassword").html("Mật khẩu nhập lại không đúng");
                             $("#errorPassword").addClass("text-danger");
+                            $("#errorPassword").html("Mật khẩu nhập lại không đúng");
                             $("#submitEditPassWordBtn").prop('disabled', false);
                         }
                         else{

@@ -111,14 +111,14 @@ exports.addProduct = async (req, res) => {
 
 
   try {
-    const addNewProduct = await productService.addProduct(fullName.trim(), price.trim(), rating.trim(), brandName.trim());
+    const addNewProduct = await productService.addProduct(fullName, price, rating, brandName);
     console.log(addNewProduct);
     const producId = addNewProduct.id;
 
     if (configurations) {
       for (let configuration of configurations) {
         if (configuration) {
-          const newConfiguration = await configurationService.addConfiguration(producId, configuration.configurationValue.trim(), configuration.specificationName.trim());
+          const newConfiguration = await configurationService.addConfiguration(producId, configuration.configurationValue, configuration.specificationName);
           console.log(newConfiguration);
         }
       };
@@ -127,7 +127,7 @@ exports.addProduct = async (req, res) => {
     if (options) {
       for (let option of options) {
         if (option) {
-          const newOption = await optionService.addOption(producId, option.optionName.trim(), option.optionPrice.trim(), option.capacityName.trim());
+          const newOption = await optionService.addOption(producId, option.optionName, option.optionPrice, option.capacityName);
           console.log(newOption);
         }
       };

@@ -56,7 +56,8 @@ exports.createOption = async  (mobile_id, name, price,capacity_id) =>  {
 
     const maxId = await models.options.max('id');
     const nextId = maxId + 1;
-    const option = await models.options.create({id: nextId, mobile_id: mobile_id, name: name, price: price, capacity_id: capacity_id});
+    const status = 'exist'
+    const option = await models.options.create({id: nextId, mobile_id: mobile_id, name: name, price: price, capacity_id: capacity_id, status});
     return option;
 }
 

@@ -48,6 +48,7 @@
     position: fixed;
     left: 0;
     top: 0;
+    z-index: 1;
     min-width: var(--admin-sidebar-widtht);
     max-width: var(--admin-sidebar-widtht);
     height: 100vh;

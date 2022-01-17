@@ -14,10 +14,10 @@ exports.getDashboardPage = async (req, res) => {
         product.picture = picture;
     }
 
-    const countProducts = await productService.countProduct();
-    const countWaitingOrders = await orderService.countOrdersByState('waiting to confirm');;
-    const countNormalUsers = await userService.countUsersByRole('user');
-    const turnoverMonth = await productService.getTurnoverMonth();
+    const countProducts = await productService.countProduct() || 0;
+    const countWaitingOrders = await orderService.countOrdersByState('waiting to confirm') || 0;
+    const countNormalUsers = await userService.countUsersByRole('user') || 0;
+    const turnoverMonth = await productService.getTurnoverMonth() || 0;
 
     res.render('index', { title: 'Dashboard', layout: 'layout.hbs',
         topProducts,

@@ -57,3 +57,8 @@ exports.getAdminPhoneNumbers = async (req, res) => {
     const phoneNumbers = await userService.getAdminPhoneNumbers();
     res.status(200).json({phoneNumbers});
 }
+
+exports.getAdminUserUniqueInfor = async (req, res) => {
+    const adminUsers = await userService.getAdminUserUniqueInfor();
+    res.status(200).json(adminUsers);
+}

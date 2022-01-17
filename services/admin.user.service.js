@@ -214,7 +214,8 @@ exports.addAdminUser = async (username, password, full_name, address, avatar, ph
                 uid: uid,
                 phone_number: phone_number,
                 created_at: created_at,
-                role: "admin"
+                role: "admin",
+                status: 'unlock',
             }
         );
         return user;
@@ -321,6 +322,29 @@ exports.getAdminPhoneNumbers = async () => {
 
 }
 
+exports.getAdminUserUniqueInfor = async () => {
+    const adminUsers = await models.users.findAll({
+        where: {
+            role: "admin"
+        },
+        raw: true,
+        attributes: [
+            'username',
+            'phone_number'
+        ]
+    })
+
+    let usernames = new Array();
+    let phoneNumbers = new Array();
+
+    for (let adminUser of adminUsers){
+        const phoneNumber = adminUser.phone_number.split(" ").join("");
+        phoneNumbers.push(phoneNumber);
+        usernames.push(adminUser.username);
+    }
+    return {usernames, phoneNumbers};
+
+}
 
 exports.toggleLockUser = async (id) => {
     const user = await this.findUserById(id, false);

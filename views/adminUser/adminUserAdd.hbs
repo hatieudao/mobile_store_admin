@@ -1,15 +1,15 @@
-<form class="container" id="addProductForm" action="/admin/adminUser/add">
+<div class="container">
     <div class="admin-container-content">
         <header class="admin-container-content-header">
             <h1 class="row py-4 text-primary admin-container-content-header__title">
-                Thêm tải khoản quản trị
+                Tạo admin mới
             </h1>
         </header>
-        <div class="">
+        <form id="addAdminForm" action="/admin/adminUser/add" enctype="multipart/form-data" method="post">
             <div class="">
-                <div class="row justify-content-end">
-                    <div class="col-sm-4">
-                        <button type="submit" class="btn btn-primary shadow-none" data-toggle="modal">
+                <div class="row justify-content-lg-end justify-content-sm-center">
+                    <div class="col-xl-4 col-lg-6 col-sm-6 text-center">
+                        <button id="addBtn" type="button" class="btn btn-primary shadow-none" data-toggle="modal">
                             <i class="fa fa-pencil"></i>
                             Thêm mới
                         </button>
@@ -18,39 +18,49 @@
             </div>
             <div class="">
                 <div class="row justify-content-center">
-                    <h2 class="row py-4 text-secondary">
+                    <h2 class="row py-2 text-secondary">
                         Thông tin tài khoản
                     </h2>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="row align-items-center">
-                            <div class="col-lg-3 py-2">
-                                Username
-                            </div>
-                            <div class="col-lg-9 py-2">
-                                <input class="form-control shadow-none" name="username" type="text" placeholder="Username" value="{{username}}" required>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-9 col-sm-12">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-3 py-2">
+                                        Username
+                                    </div>
+                                    <div class="col-lg-9 py-2">
+                                        <input class="form-control shadow-none" id="username" name="username" type="text" placeholder="username" required>
+                                    </div>
+                                    <p id="existUsername"></p>
+                                </div>
                             </div>
                         </div>
-                        {{#if error}}
-                        <div class="row align-items-center justify-content-end">
-                            <div class="col-lg-9 py-2">
-                                {{error}}
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-3 py-2">
+                                        Password
+                                    </div>
+                                    <div class="col-lg-9 py-2">
+                                        <input class="form-control shadow-none" name="password" type="password" placeholder="password" required>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        {{/if}}
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="row align-items-center">
-                            <div class="col-lg-3 py-2">
-                                Password
-                            </div>
-                            <div class="col-lg-9 py-2">
-                                <input class="form-control shadow-none" name="password" type="password" placeholder="Password" value="{{password}}" required>
-                            </div>
+                    <div class="col-lg-3 col-md-6 align-items-center justify-content-center">
+                        <div style="border: solid 1px #ccc">
+                            <img id="adminAvatarImg" src="/adminStyle/img/avatar/default.png" style="width: 100%"/>
                         </div>
+                        <div class="mt-2">
+                            <input id="adminAvatarImgInput" name="avatar" accept="image/*" type='file'/>
+                        </div>
+                        <button id="cancelAvatarInputBtn" class="btn btn-warning text-center" type="button">
+                            <i class="fas fa-window-close"></i>
+                            Hủy
+                        </button>
                     </div>
                 </div>
             </div>
@@ -61,54 +71,148 @@
                     </h2>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 col-md-12">
                         <div class="row align-items-center">
                             <div class="col-lg-3 py-2">
                                 Họ tên
                             </div>
                             <div class="col-lg-9 py-2">
-                                <input class="form-control shadow-none" name="fullName" type="text" placeholder="Họ tên" value="{{fullName}}" required>
+                                <input class="form-control shadow-none" name="full_name" type="text" placeholder="Họ tên" required>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="row align-items-center">
-                            <div class="col-lg-3 py-2">
-                                Địa chỉ
-                            </div>
-                            <div class="col-lg-9 py-2">
-                                <input class="form-control shadow-none" name="address" type="text" placeholder="Địa chỉ" value="{{address}}" required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 col-md-12">
                         <div class="row align-items-center">
                             <div class="col-lg-3 py-2">
                                 Số điện thoại
                             </div>
                             <div class="col-lg-9 py-2">
-                                <input class="form-control shadow-none" name="phoneNumber" type="number" placeholder="Số điện thoại" value="{{phoneNumber}}" required>
+                                <input class="form-control shadow-none" name="phone_number" id="phoneNumber" type="tel" placeholder="Số điện thoại">
                             </div>
                         </div>
+                        <p id="existPhoneNumber"></p>
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 col-md-12">
                         <div class="row align-items-center">
-                            <div class="col-lg-3 py-2">
-                                Link avatar
+                            <div class="col-lg-3 col-sm-12 py-2">
+                                Địa chỉ
                             </div>
-                            <div class="col-lg-9 py-2">
-                                <input class="form-control shadow-none" name="avatar" type="text" placeholder="link" value="{{avatar}}" required>
+                            <div class="col-lg-9 col-sm-12 py-2">
+                                <input class="form-control shadow-none" name="address" type="text" placeholder="Địa chỉ" required>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </form>
+
+    </div>
+</div>
+
+<div id="saveAddModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn chắc chắn thêm admin mới?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="saveAddBtn" type="submit" class="btn btn-primary" form="addAdminForm">Save</button>
+                <button id="closeSaveModalBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
-</form>
+</div>
+
+
+{{#section 'script'}}
+    <script>
+        let usernames = new Array()
+        let phoneNumbers = new Array()
+
+        const curAvatarSrc = $("#adminAvatarImg").attr("src");
+
+        $(document).ready(function() {
+
+            $.ajax({
+                url: "/admin/api/adminUser/adminUserUniqueInfor",
+                success(data){
+                    console.log("ajax user");
+                    usernames = data.usernames;
+                    phoneNumbers = data.phoneNumbers;
+                }
+            });
+
+            $("#cancelAvatarInputBtn").hide();
+        });
+
+        $("#addBtn").click(function (e){
+
+            let isInvaidUsername = false;
+            let isInvaidPhoneNumber = false;
+
+            const phoneNumber = $("#phoneNumber").val().split(" ").join("");;
+            const username = $("#username").val().split(" ").join("");;
+
+
+
+
+            const isExistPhoneNumber = phoneNumbers.includes(phoneNumber);
+            if(isExistPhoneNumber){
+                console.log("Số điện thoại đã tồn tại")
+                $("#existPhoneNumber").html("Số điện thoại đã tồn tại");
+                $("#existPhoneNumber").addClass("text-danger");
+                // $("#closeSaveModalBtn").click();
+            }
+            else{
+                $("#existPhoneNumber").html("");
+                isInvaidPhoneNumber = true;
+                // $("#updateForm").submit();
+            }
+
+
+            const isExistUsername = usernames.includes(username);
+            if(isExistUsername){
+                console.log("Username đã tồn tại")
+                $("#existUsername").html("Username đã tồn tại");
+                $("#existUsername").addClass("text-danger");
+                // $("#closeSaveModalBtn").click();
+            }
+            else{
+                $("#existUsername").html("");
+                isInvaidUsername = true;
+                // $("#updateForm").submit();
+            }
+
+            if(isInvaidPhoneNumber && isInvaidUsername){
+                $("#saveAddModal").modal('show');
+            }
+        })
+
+
+        $("#adminAvatarImgInput").change(function(e) {
+            console.log("change avatar");
+            const file = e.target.files[0];
+            const src = URL.createObjectURL(file);
+            $("#adminAvatarImg").attr("src",src);
+            $("#cancelAvatarInputBtn").show();
+        });
+
+        $("#cancelAvatarInputBtn").click(function (e){
+            $("#adminAvatarImgInput").val("");
+            $("#adminAvatarImg").attr("src",curAvatarSrc);
+            $("#cancelAvatarInputBtn").hide();
+        })
+
+
+    </script>
+{{/section}}

@@ -104,7 +104,12 @@ exports.addProduct = async (req, res) => {
   const pictureFiles = req.files;
   // const pictures = req.query.pictures;
 
-  const { fullName, price, rating, brandName } = req.body;
+
+  const { fullName, brandName } = req.body;
+  const price = req.body.price || 0;
+  const rating = req.body.rating || 0;
+
+
   try {
     const addNewProduct = await productService.addProduct(fullName.trim(), price.trim(), rating.trim(), brandName.trim());
     console.log(addNewProduct);

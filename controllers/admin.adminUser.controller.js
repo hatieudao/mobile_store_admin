@@ -47,19 +47,21 @@ exports.addAdminUserPage = (req, res) => {
 
 
 exports.addAdminUser = async (req, res) => {
-    const { username, password, fullName, address, phoneNumber, avatar } = req.query;
+    const { username, password, full_name, address, phoneNumber } = req.body;
 
-    const adminUser = await userService.findAdminUserByUsername(username);
-    if(adminUser) {
-        const error = "Tên đăng nhập đã tồn tại";
-        res.render('adminUser/adminUserAdd', { title: 'Product', layout: 'layout.hbs', username, password, fullName, address, phoneNumber, avatar,error});
+    const avatarFile = req.file;
+    let avatar;
+
+    if (avatarFile) {
+        let path = avatarFile.path.replace(/\\/g, "/");
+        avatar = path.replace('public', "");
     }
-    else {
-        const addNewAdminUser = await userService.addAdminUser(username, password, fullName, address, avatar, phoneNumber);
-        console.log(addNewAdminUser);
-        const id = addNewAdminUser.id;
-        res.redirect('/admin/adminUser/'+id);
-    }
+
+
+    const addNewAdminUser = await userService.addAdminUser(username, password, full_name, address, avatar, phoneNumber);
+    console.log(addNewAdminUser);
+    const id = addNewAdminUser.id;
+    res.redirect('/admin/adminUser/'+id);
 }
 
 exports.adminAccount = async (req, res) => {

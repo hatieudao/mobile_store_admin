@@ -10,7 +10,6 @@
             <div class="">
                 <div class="row justify-content-end">
                     <div class="col-sm-4 text-center">
-                        {{#ifCond ../user.id '!==' id }}
                             {{#ifCond adminUser.status "===" "lock" }}
                                 <button type="submit" class="btn btn-success shadow-none" data-toggle="modal" data-target="#saveModal">
                                     <i class="fas fa-unlock"></i>
@@ -22,7 +21,6 @@
                                     Khóa
                                 </button>
                             {{/ifCond}}
-                        {{/ifCond}}
 
                     </div>
                 </div>

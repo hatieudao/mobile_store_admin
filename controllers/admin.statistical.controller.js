@@ -29,6 +29,35 @@ exports.getDateStatisticalPage = async (req, res) => {
     res.render('statistical/statisticalDatePage', { title: 'statistical', layout: 'layout.hbs', statistics, pagination});
 }
 
+
+exports.getWeekStatisticalPage = async (req, res) => {
+
+    const data = req.query;
+    const page = parseInt(data.page) || 1;
+    const limit = parseInt(data.limit) || 10;
+
+    //filter
+    //Lấy các giá trị filter
+    const filter = {
+        minDate: data.minDate,
+        maxDate: data.maxDate,
+    }
+
+    const allStatistics = await statisticalService.getStatisticalWeek(page, limit, filter, true);
+    // const allStatistics = await statisticalService.getStatisticalMonth(page, limit, filter, true);
+    // const allStatistics = await statisticalService.getStatisticalYear(page, limit, filter, true);
+    const statistics = allStatistics.rows;
+    const count = allStatistics.count;
+
+    const pagination = {
+        page: page,
+        limit: limit,
+        totalRows: count
+    }
+
+    res.render('statistical/statisticalWeekPage', { title: 'statistical', layout: 'layout.hbs', statistics, pagination});
+}
+
 exports.getMonthStatisticalPage = async (req, res) => {
 
     const data = req.query;

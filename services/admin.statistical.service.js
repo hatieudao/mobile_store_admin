@@ -180,6 +180,114 @@ exports.getStatisticalDate = async (page, limit, filter, raw = false) => {
 
 }
 
+exports.getStatisticalWeek = async (page, limit, filter, raw = false) => {
+
+    let options = {
+        include: [
+            { model: models.options, require: true, as: 'option',
+                attributes: [
+                    // 'id',
+                    // 'price'
+                ],
+                where: {
+
+                }
+            },
+            { model: models.orders, require: true, as: 'order',
+                attributes: [
+                    // 'id',
+                    // 'created_at'
+                ],
+                where: {
+
+                }
+            },
+        ],
+        attributes: [
+            // [sequelize.fn('date',  sequelize.col('order.created_at')), 'created_at_date'],
+            [sequelize.fn('sum',  sequelize.col('option.price')), 'total_money'],
+            [sequelize.fn('count',  sequelize.col('option.id')), 'count_options'],
+            [sequelize.fn('count',   sequelize.fn('distinct', sequelize.col('order.id'))), 'count_orders'],
+            // 'order_details.id'
+            [sequelize.fn('date_trunc', 'week',  sequelize.col('order.created_at')), 'created_at_week'],
+        ],
+
+        group:  sequelize.col('created_at_week'),
+
+        // where: {
+        //
+        // },
+        // attributes: [
+        //     // [sequelize.fn('date',  sequelize.col('created_at')), 'created_at_date'],
+        //     'created_at'
+        // ],
+        order: [
+            [sequelize.col('created_at_week'), 'ASC'],
+        ],
+        group:  sequelize.col('created_at_week'),
+        raw: raw,
+
+
+    }
+
+
+    // filter.minDate = new Date(2021,2,2);
+    // filter.maxDate = new Date(2021,2,2);
+
+    if(filter.minDate && filter.maxDate){
+
+        //Vì maxCreatedDate tính từ đầu ngày, nên ta phải lấy ngày tiếp theo của nó
+        const maxCreatedDateToday = new Date(filter.maxDate)
+        const maxCreatedDateTomorrow = new Date(maxCreatedDateToday);
+        maxCreatedDateTomorrow.setDate(maxCreatedDateToday.getDate()+1);
+
+        //include[1]. là orders
+        options.include[1].where.created_at  = {
+            [Op.between]: [filter.minDate, maxCreatedDateTomorrow]
+        };
+    }
+    //Ngược lại, 1 trong 2 undefined hoặc cả 2 đều undefined
+    else{
+        if(filter.minDate){
+            options.include[1].where.created_at  = {
+                [Op.gte]: filter.minDate
+            };
+        }
+        if(filter.maxDate){
+            const maxDateToday = new Date(filter.maxDate)
+            const maxDateTomorrow = new Date();
+            maxDateTomorrow.setDate(maxDateToday.getDate()+1);
+
+            options.where.created_at  = {
+                [Op.lte]: maxDateTomorrow
+            };
+        }
+    }
+
+    try{
+        // const result = await models.order_details.findAll({
+        //
+        // });
+
+        const all = await models.order_details.findAll(options);
+        const count = all.length;
+        // const count = 0;
+
+        if(limit && page){
+            options.offset = (page - 1) * limit;
+            options.limit = limit;
+        }
+
+        const rows = await models.order_details.findAll(options)
+
+        return {rows, count};
+        // return rows;
+    }catch (e) {
+        console.log(e);
+    }
+
+}
+
 
 exports.getStatisticalMonth = async (page, limit, filter, raw = false) => {
 

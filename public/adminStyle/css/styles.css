@@ -55,6 +55,7 @@
     background-color: var(--admin-sidebar-bg-color);
     transition: all 0.3s;
     transform-origin: 0 left;
+
 }
 
 .admin-wrapper.admin-sidebar--hide .admin-sidebar{
@@ -125,6 +126,11 @@
     font-weight: 400;
 }
 
+.admin-sidebar-sub-item{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
 
 .admin-sidebar-item__link,
 .admin-sidebar-sub-item__link{
@@ -134,7 +140,7 @@
     padding-left: 24px;
     text-decoration: none;
     color: var(--white-color);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 400;
 }
 

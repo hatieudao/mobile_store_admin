@@ -125,6 +125,10 @@ exports.updateAdminCurrentAccount = async (req, res) => {
 
     await userService.updateAdminUser(id, phone_number, address, avatar);
 
+    if(avatar){
+        res.locals.user.avatar = avatar;
+    }
+
 
     res.redirect('/admin/adminUser/currentAccount');
 }

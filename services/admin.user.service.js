@@ -315,8 +315,10 @@ exports.getAdminPhoneNumbers = async () => {
 
     let phoneNumbers = new Array();
     for (let adminUser of adminUsers){
-        const phoneNumber = adminUser.phone_number.split(" ").join("");
-        phoneNumbers.push(phoneNumber);
+        if(adminUser.phone_number){
+            const phoneNumber = adminUser.phone_number.split(" ").join("");
+            phoneNumbers.push(phoneNumber);
+        }
     }
     return phoneNumbers;
 
@@ -338,8 +340,10 @@ exports.getAdminUserUniqueInfor = async () => {
     let phoneNumbers = new Array();
 
     for (let adminUser of adminUsers){
-        const phoneNumber = adminUser.phone_number.split(" ").join("");
-        phoneNumbers.push(phoneNumber);
+        if(adminUser.phone_number){
+            const phoneNumber = adminUser.phone_number.split(" ").join("");
+            phoneNumbers.push(phoneNumber);
+        }
         usernames.push(adminUser.username);
     }
     return {usernames, phoneNumbers};

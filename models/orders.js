@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('orders', {
     id: {
       autoIncrement: true,
@@ -22,7 +22,14 @@ module.exports = function(sequelize, DataTypes) {
     created_at: {
       type: DataTypes.DATE,
       allowNull: true
-    }
+    },
+    phone: {
+      type: DataTypes.STRING(15),
+      allowNull: true
+    }, address: {
+      type: DataTypes.STRING(150),
+      allowNull: true
+    },
   }, {
     sequelize,
     tableName: 'orders',

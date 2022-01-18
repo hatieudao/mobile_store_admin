@@ -99,8 +99,8 @@ exports.getStatisticalDate = async (page, limit, filter, raw = false) => {
         ],
         attributes: [
             // [sequelize.fn('date',  sequelize.col('order.created_at')), 'created_at_date'],
-            [sequelize.fn('sum',  sequelize.col('option.price')), 'total_money'],
-            [sequelize.fn('count',  sequelize.col('option.id')), 'count_options'],
+            [sequelize.fn('sum',   sequelize.literal('(option.price*order_details.quantity)')), 'total_money'],
+            [sequelize.fn('sum',  sequelize.col('order_details.quantity')), 'sumQuantity'],
             [sequelize.fn('count',  sequelize.fn('distinct', sequelize.col('order.id'))), 'count_orders'],
             // 'order_details.id'
             [sequelize.fn('date',  sequelize.col('order.created_at')), 'created_at_date'],
@@ -205,8 +205,8 @@ exports.getStatisticalWeek = async (page, limit, filter, raw = false) => {
         ],
         attributes: [
             // [sequelize.fn('date',  sequelize.col('order.created_at')), 'created_at_date'],
-            [sequelize.fn('sum',  sequelize.col('option.price')), 'total_money'],
-            [sequelize.fn('count',  sequelize.col('option.id')), 'count_options'],
+            [sequelize.fn('sum',   sequelize.literal('(option.price*order_details.quantity)')), 'total_money'],
+            [sequelize.fn('sum',  sequelize.col('order_details.quantity')), 'sumQuantity'],
             [sequelize.fn('count',   sequelize.fn('distinct', sequelize.col('order.id'))), 'count_orders'],
             // 'order_details.id'
             [sequelize.fn('date_trunc', 'week',  sequelize.col('order.created_at')), 'created_at_week'],
@@ -314,8 +314,8 @@ exports.getStatisticalMonth = async (page, limit, filter, raw = false) => {
         ],
         attributes: [
             // [sequelize.fn('date',  sequelize.col('order.created_at')), 'created_at_date'],
-            [sequelize.fn('sum',  sequelize.col('option.price')), 'total_money'],
-            [sequelize.fn('count',  sequelize.col('option.id')), 'count_options'],
+            [sequelize.fn('sum',   sequelize.literal('(option.price*order_details.quantity)')), 'total_money'],
+            [sequelize.fn('sum',  sequelize.col('order_details.quantity')), 'sumQuantity'],
             [sequelize.fn('count',   sequelize.fn('distinct', sequelize.col('order.id'))), 'count_orders'],
             // 'order_details.id'
             [sequelize.fn('date_trunc', 'month',  sequelize.col('order.created_at')), 'created_at_month'],
@@ -422,8 +422,8 @@ exports.getStatisticalYear = async (page, limit, filter, raw = false) => {
         ],
         attributes: [
             // [sequelize.fn('date',  sequelize.col('order.created_at')), 'created_at_date'],
-            [sequelize.fn('sum',  sequelize.col('option.price')), 'total_money'],
-            [sequelize.fn('count',  sequelize.col('option.id')), 'count_options'],
+            [sequelize.fn('sum',   sequelize.literal('(option.price*order_details.quantity)')), 'total_money'],
+            [sequelize.fn('sum',  sequelize.col('order_details.quantity')), 'sumQuantity'],
             [sequelize.fn('count',  sequelize.fn('distinct', sequelize.col('order.id'))), 'count_orders'],
             // 'order_details.id'
             [sequelize.fn('date_trunc', 'year',  sequelize.col('order.created_at')), 'created_at_year'],
@@ -531,8 +531,8 @@ exports.getStatisticalQuarter = async (page, limit, filter, raw = false) => {
         ],
         attributes: [
             // [sequelize.fn('date',  sequelize.col('order.created_at')), 'created_at_date'],
-            [sequelize.fn('sum',  sequelize.col('option.price')), 'total_money'],
-            [sequelize.fn('count',  sequelize.col('option.id')), 'count_options'],
+            [sequelize.fn('sum',   sequelize.literal('(option.price*order_details.quantity)')), 'total_money'],
+            [sequelize.fn('sum',  sequelize.col('order_details.quantity')), 'sumQuantity'],
             [sequelize.fn('count',   sequelize.fn('distinct', sequelize.col('order.id'))), 'count_orders'],
             // 'order_details.id'
             [sequelize.fn('date_trunc', 'QUARTER',  sequelize.col('order.created_at')), 'created_at_quarter'],

@@ -11,7 +11,7 @@
                 <div class="row align-items-start justify-content-between">
                     <div class="col-lg-10">
                         <div class="row pb-2">
-                            <div class="pb-2 col-lg-3 col-md-6">
+                            <div class="pb-2 col-lg-2 col-md-6">
                                 <div class="d-flex justify-content-between">
                                     <input name="adminId" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="ID Admin"
                                         {{#if filter.adminId}}
@@ -20,7 +20,7 @@
                                     >
                                 </div>
                             </div>
-                            <div class="pb-2 col-lg-3 col-md-6">
+                            <div class="pb-2 col-lg-4 col-md-6">
                                 <div class="d-flex justify-content-between">
                                     <input name="adminName" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Tên Admin"
                                         {{#if filter.adminName}}
@@ -29,7 +29,7 @@
                                     >
                                 </div>
                             </div>
-                            <div class="pb-2 col-lg-3 col-md-6">
+                            <div class="pb-2 col-lg-2 col-md-6">
                                 <div class="d-flex justify-content-between">
                                     <input name="adminPhoneNumber" type="number" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Số điện thoại"
                                         {{#if filter.adminPhoneNumber}}
@@ -38,11 +38,20 @@
                                     >
                                 </div>
                             </div>
-                            <div class="pb-2 col-lg-3 col-md-6">
+                            <div class="pb-2 col-lg-2 col-md-6">
                                 <div class="d-flex justify-content-between">
                                     <input name="adminUserName" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Username"
                                         {{#if filter.adminUserName}}
                                            value="{{filter.adminUserName}}"
+                                        {{/if}}
+                                    >
+                                </div>
+                            </div>
+                            <div class="pb-2 col-lg-2 col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <input name="adminEmail" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Email"
+                                        {{#if filter.adminEmail}}
+                                           value="{{filter.adminEmail}}"
                                         {{/if}}
                                     >
                                 </div>
@@ -150,6 +159,9 @@
                         Username
                     </th>
                     <th>
+                        Email
+                    </th>
+                    <th>
                         Tên
                     </th>
                     <th>
@@ -182,6 +194,7 @@
                         </td>
                         <td>{{id}}</td>
                         <td>{{username}}</td>
+                        <td>{{email}}</td>
                         <td>{{full_name}}</td>
                         <td>{{phone_number}}</td>
                         <td>{{created_at}}</td>

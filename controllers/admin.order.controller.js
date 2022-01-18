@@ -18,7 +18,7 @@ exports.orderList = async (req, res) => {
         orderId: data.orderId,
         customerId: data.customerId,
         customerUsername: data.customerUsername,
-        customerPhoneNumber: data.customerPhoneNumber,
+        phone: data.phone,
         state: ((data.state) === '0') ? undefined : data.state,
         minCreatedDate: data.minCreatedDate || new Date(2021, 0, 1),
         maxCreatedDate: data.maxCreatedDate || new Date(),
@@ -56,7 +56,7 @@ exports.orderItem = async (req, res) => {
     const countOrderByUserId = await orderService.countOrderByUserId(userId);
     // const totalAllMoneyOfUser = await orderService.getAllMoneyByUserId(userId);
     const orderTotalMoney = orderDetails.reduce(function (total, orderDetail) {
-        return total + parseInt(orderDetail['option.price']);
+        return total + parseInt(orderDetail['option.price']) * parseInt(orderDetail.quantity);
     }, 0);
 
 

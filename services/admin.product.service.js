@@ -344,10 +344,10 @@ exports.getTopProduct = async (limit) => {
             ],
             limit: limit,
             attributes: [
-                [sequelize.fn('count', sequelize.col('order_details.id')), 'countOrderDetail'],
+                [sequelize.fn('sum',  sequelize.col('order_details.quantity')), 'sumQuantity'],
             ],
             order: [
-                [sequelize.col('countOrderDetail'), 'DESC'],
+                [sequelize.col('sumQuantity'), 'DESC'],
             ],
             group: [
                 // 'order_details.id',

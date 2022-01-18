@@ -15,6 +15,7 @@ exports.adminUserList = async (req, res) => {
     const filter = {
         adminId: data.adminId,
         adminUserName: data.adminUserName,
+        adminEmail: data.adminEmail,
         adminName: data.adminName,
         adminPhoneNumber: data.adminPhoneNumber,
         status: ((data.status) === '0') ? undefined : data.status,

@@ -34,6 +34,15 @@
                                     {{/if}} >
                                 </div>
                             </div>
+                            <div class="pb-2 col-lg-2 col-md-6">
+                                <div class="d-flex justify-content-between">
+                                    <input name="userEmail" type="text" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Email"
+                                        {{#if filter.userEmailuserEmail}}
+                                           value="{{filter.userEmail}}"
+                                        {{/if}}
+                                    >
+                                </div>
+                            </div>
                         </div>
                         <div class="row pb-2">
                             <div class="pb-2 col-lg-3 col-md-6">
@@ -112,6 +121,9 @@
                         Username
                     </th>
                     <th>
+                        Email
+                    </th>
+                    <th>
                         Tên
                     </th>
                     <th>
@@ -141,6 +153,7 @@
                         </td>
                         <td>{{id}}</td>
                         <td>{{username}}</td>
+                        <td>{{email}}</td>
                         <td>{{full_name}}</td>
                         <td>{{phone_number}}</td>
                         <td>{{created_at}}</td>

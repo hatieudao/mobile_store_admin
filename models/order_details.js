@@ -22,6 +22,10 @@ module.exports = function(sequelize, DataTypes) {
         model: 'options',
         key: 'id'
       }
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     sequelize,

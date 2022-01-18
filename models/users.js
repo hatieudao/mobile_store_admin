@@ -40,19 +40,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(15),
       allowNull: true
     },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
     status: {
       type: DataTypes.STRING(30),
+      allowNull: true
+    },
+    email: {
+      type: DataTypes.STRING(200),
       allowNull: true
     }
   }, {
     sequelize,
     tableName: 'users',
     schema: 'public',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "users_pkey",

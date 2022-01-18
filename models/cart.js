@@ -14,6 +14,14 @@ module.exports = function(sequelize, DataTypes) {
         model: 'users',
         key: 'id'
       }
+    },
+    address: {
+      type: DataTypes.STRING(300),
+      allowNull: true
+    },
+    phone: {
+      type: DataTypes.STRING(20),
+      allowNull: true
     }
   }, {
     sequelize,

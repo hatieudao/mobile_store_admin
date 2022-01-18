@@ -19,15 +19,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(30),
       allowNull: true
     },
-    created_at: {
-      type: DataTypes.DATE,
+    address: {
+      type: DataTypes.STRING(200),
+      allowNull: true
+    },
+    phone: {
+      type: DataTypes.STRING(20),
       allowNull: true
     }
   }, {
     sequelize,
     tableName: 'orders',
     schema: 'public',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "orders_pkey",

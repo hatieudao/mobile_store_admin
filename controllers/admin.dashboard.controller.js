@@ -19,12 +19,12 @@ exports.getDashboardPage = async (req, res) => {
     const countNormalUsers = await userService.countUsersByRole('user') || 0;
     const turnoverMonth = await productService.getTurnoverMonth() || 0;
 
-    res.render('index', { title: 'Dashboard', layout: 'layout.hbs',
-        topProducts,
-        countProducts,
-        countWaitingOrders,
-        countNormalUsers,
-        turnoverMonth
-    });
-    // res.redirect("/admin/statistical/date")
+    // res.render('index', { title: 'Dashboard', layout: 'layout.hbs',
+    //     topProducts,
+    //     countProducts,
+    //     countWaitingOrders,
+    //     countNormalUsers,
+    //     turnoverMonth
+    // });
+    res.redirect("/admin/statistical/date")
 }

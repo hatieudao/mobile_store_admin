@@ -23,7 +23,7 @@
                     </div>
                     <div class="row">
                         <div class="col-4">Số điện thoại</div>
-                        <div class="col-8">{{order.[user.phone_number]}}</div>
+                        <div class="col-8">{{order.phone}}</div>
                     </div>
                     <div class="row">
                         <div class="col-4">Số lượng sản phẩm</div>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="row">
                         <div class="col-4">Địa chỉ</div>
-                        <div class="col-8">{{order.[user.address]}}</div>
+                        <div class="col-8">{{order.address}}</div>
                     </div>
                     <div class="row">
                         <div class="col-4">Trình trạng</div>
@@ -74,12 +74,21 @@
                                             <h3>{{order.[user.username]}}</h3>
                                         </div>
                                     </div>
+
                                     <div class="row">
                                         <div class="col">
                                             <i class="fas fa-phone"></i>
                                             {{order.[user.phone_number]}}
                                         </div>
                                     </div>
+                                    {{#if order.[user.email]}}
+                                        <div class="row">
+                                            <div class="col">
+                                                <i class="fas fa-envelope-square"></i>
+                                                {{order.[user.email]}}
+                                            </div>
+                                        </div>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>
@@ -122,6 +131,9 @@
                             <th>
                                 Capacity
                             </th>
+                            <th>
+                                Số lượng
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -134,6 +146,7 @@
                                 <td>{{[option.name]}}</td>
                                 <td>{{[option.price]}}</td>
                                 <td>{{[option.capacity.name]}}</td>
+                                <td>{{quantity}}</td>
                             </tr>
                         {{/each}}
                         </tbody>

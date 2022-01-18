@@ -1,4 +1,4 @@
-<div class="container">
+<br class="container">
     <div class="admin-container-content">
         <header class="admin-container-content-header">
             <h1 class="row py-4 text-primary admin-container-content-header__title">
@@ -39,9 +39,9 @@
                             </div>
                             <div class="pb-2 col-lg-3 col-md-6">
                                 <div class="d-flex justify-content-between">
-                                    <input name="customerPhoneNumber" type="number" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Số điện thoại"
-                                        {{#if filter.customerPhoneNumber}}
-                                           value="{{filter.customerPhoneNumber}}"
+                                    <input name="phone" type="number" class="form-control shadow-none" aria-label="Text input with dropdown button" placeholder="Số điện thoại"
+                                        {{#if filter.phone}}
+                                           value="{{filter.phone}}"
                                         {{/if}}
                                     >
                                 </div>
@@ -171,7 +171,7 @@
                             {{[user.full_name]}}
                         </td>
                         <td>
-                            {{[user.phone_number]}}
+                            {{phone}}
                         </td>
                          <td>
                             {{created_at}}
@@ -239,7 +239,10 @@
     </div>
 </div>
 
+
+
 {{#section 'script'}}
     <script src="/adminStyle/js/filterSelect.js"></script>
     <script src="/adminStyle/js/orderPagination.js"></script>
 {{/section}}
+

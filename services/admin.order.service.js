@@ -43,8 +43,8 @@ exports.orderList = async (page, limit, filter, raw = false) => {
             options.include[0].where.username = filter.customerUsername;
         }
 
-        if (filter.customerPhoneNumber){
-            options.include[0].where.phone_number = filter.customerPhoneNumber;
+        if (filter.phone){
+            options.where.phone = filter.phone;
         }
 
         if(filter.state){

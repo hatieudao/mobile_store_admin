@@ -39,6 +39,9 @@ exports.userList = async (page, limit, filter, raw = false) => {
         if (filter.userUserName){
             options.where.username = filter.userUserName.trim();
         }
+        if (filter.userEmail){
+            options.where.email = filter.userEmail.trim();
+        }
 
         if(filter.status){
             options.where.status = filter.status
@@ -152,6 +155,9 @@ exports.adminUserList = async (page, limit, filter, raw = false) => {
             options.where.username = filter.adminUserName.trim();
         }
 
+        if (filter.adminEmail){
+            options.where.email = filter.adminEmail.trim();
+        }
         if(filter.status){
             options.where.status = filter.status
         }

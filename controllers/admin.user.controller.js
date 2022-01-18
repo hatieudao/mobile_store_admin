@@ -13,6 +13,7 @@ exports.userList = async (req, res) => {
         userFullName: data.userFullName,
         userPhoneNumber: data.userPhoneNumber,
         userUserName: data.userUserName,
+        userEmail: data.userEmail,
         status: ((data.status) === '0') ? undefined : data.status,
         minCreatedDate: data.minCreatedDate,
         maxCreatedDate: data.maxCreatedDate,

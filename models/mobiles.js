@@ -29,6 +29,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
     status: {
       type: DataTypes.STRING(30),
       allowNull: true
@@ -37,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
     sequelize,
     tableName: 'mobiles',
     schema: 'public',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "mobiles_pkey",

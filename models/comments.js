@@ -31,15 +31,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    parent_id: {
-      type: DataTypes.INTEGER,
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    created_at: {
+      type: DataTypes.DATE,
       allowNull: true
     }
   }, {
     sequelize,
     tableName: 'comments',
     schema: 'public',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "comments_pkey",

@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('orders', {
     id: {
       autoIncrement: true,
@@ -19,19 +19,22 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(30),
       allowNull: true
     },
-    address: {
-      type: DataTypes.STRING(200),
+    created_at: {
+      type: DataTypes.DATE,
       allowNull: true
     },
     phone: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(15),
       allowNull: true
-    }
+    }, address: {
+      type: DataTypes.STRING(150),
+      allowNull: true
+    },
   }, {
     sequelize,
     tableName: 'orders',
     schema: 'public',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "orders_pkey",

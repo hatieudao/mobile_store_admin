@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('users', {
     id: {
       autoIncrement: true,
@@ -12,6 +12,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     password: {
+      type: DataTypes.STRING(200),
+      allowNull: false
+    },
+    email: {
       type: DataTypes.STRING(200),
       allowNull: false
     },
@@ -40,6 +44,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(15),
       allowNull: true
     },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
     status: {
       type: DataTypes.STRING(30),
       allowNull: true
@@ -52,7 +60,7 @@ module.exports = function(sequelize, DataTypes) {
     sequelize,
     tableName: 'users',
     schema: 'public',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "users_pkey",

@@ -249,9 +249,9 @@ exports.findAdminUserByUsername = (username) => {
     return result;
 }
 
-exports.findUnlockAdminUserByUsername = (username) => {
+exports.findUnlockAdminUserByUsername = async (username) => {
 
-    const result = models.users.findOne({
+    const result = await models.users.findOne({
         where: {
             username: username,
             role: "admin",
